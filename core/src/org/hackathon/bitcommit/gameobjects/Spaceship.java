@@ -23,14 +23,11 @@ public class Spaceship {
     public void update(float delta){
 
         velocity.scl(delta);
-        position.add(1, 0, 0);
+        position.add(10, 0, 0);
         velocity.scl(1/delta);
 
-        if(position.x == Game.WIDTH - 100){
-            velocity.scl(delta);
-            position.add(0, 0, 0);
-            velocity.scl(1/delta);
-
+        if(position.x >= Game.WIDTH - texture.getWidth()){
+            position.set(Game.WIDTH - texture.getWidth(), 50, 0);
         }
 
     }
