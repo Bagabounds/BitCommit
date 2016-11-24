@@ -1,7 +1,10 @@
 package org.hackathon.bitcommit.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
+import org.hackathon.bitcommit.helpers.InputHandler;
+import org.hackathon.bitcommit.states.PlayState;
 
 /**
  * Created by codecadet on 24/11/16.
@@ -24,10 +27,6 @@ public class Screen {
     }
 
     public void update(float delta){
-
-        velocity.scl(delta);
-        position.add(10, 0, 0);
-        velocity.scl(1/delta);
 
     }
 

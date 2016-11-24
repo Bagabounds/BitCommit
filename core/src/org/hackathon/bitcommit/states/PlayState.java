@@ -1,10 +1,12 @@
 package org.hackathon.bitcommit.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
+import org.hackathon.bitcommit.helpers.InputHandler;
 
 /**
  * Created by codecadet on 24/11/16.
@@ -20,6 +22,7 @@ public class PlayState extends State{
         background = new Texture("core/assets/background_1024.png");
         spaceship = new Spaceship(20,50);
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
+        Gdx.input.setInputProcessor(new InputHandler(spaceship));
     }
 
     @Override
@@ -29,7 +32,6 @@ public class PlayState extends State{
 
     @Override
     public void update(float delta) {
-
         handleInput();
         spaceship.update(delta);
     }
@@ -49,5 +51,9 @@ public class PlayState extends State{
     @Override
     public void dispose() {
 
+    }
+
+    public Spaceship getSpaceship() {
+        return spaceship;
     }
 }
