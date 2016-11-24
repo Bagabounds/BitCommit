@@ -43,6 +43,7 @@ public class PlayState extends State{
         spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
         spriteBatch.draw(spaceship.getTexture(), spaceship.getPosition().x, spaceship.getPosition().y);
         spriteBatch.end();
+
     }
 
     @Override

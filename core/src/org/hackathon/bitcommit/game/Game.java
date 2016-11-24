@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.hackathon.bitcommit.states.GameStateManager;
+import org.hackathon.bitcommit.states.Hud;
 import org.hackathon.bitcommit.states.MenuState;
 
 public class Game extends ApplicationAdapter {
@@ -17,6 +18,7 @@ public class Game extends ApplicationAdapter {
 
 	private SpriteBatch spriteBatch;
 	private Texture img;
+	private Hud hud;
 	
 	@Override
 	public void create () {
@@ -24,6 +26,7 @@ public class Game extends ApplicationAdapter {
 		img = new Texture("core/assets/badlogic.jpg");
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
+		hud = new Hud(spriteBatch);
 
 	}
 
@@ -35,6 +38,9 @@ public class Game extends ApplicationAdapter {
 
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(spriteBatch);
+		spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
+		hud.stage.draw();
+
 
 /*		batch.begin();
 		batch.draw(img, 0, 0);
