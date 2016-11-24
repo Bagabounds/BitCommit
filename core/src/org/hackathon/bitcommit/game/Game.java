@@ -41,7 +41,6 @@ public class Game extends ApplicationAdapter {
 		spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.stage.draw();
 
-
 /*		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();*/
