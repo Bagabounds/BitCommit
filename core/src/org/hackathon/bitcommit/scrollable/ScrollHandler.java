@@ -14,7 +14,8 @@ public class ScrollHandler {
 
     public static final int PADDING = 300;
     public static final int BG_SCROLL_SPEED = -50;
-    public static final int AST_SCROLL_SPEED = -500;
+    //public static final int AST_SCROLL_SPEED = -500;
+    public static final int AST_SCROLL_SPEED = -300;
 
     public ScrollHandler() {
         bg1 = new Background(0, 0, BG_SCROLL_SPEED, "core/assets/backgroundslice3.jpg");

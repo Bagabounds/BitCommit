@@ -45,11 +45,11 @@ public class TestScrollState extends State {
     }
 
     public void drawBackgroundImages(SpriteBatch spriteBatch) {
-        spriteBatch.draw(scroller.getBg1().getTexture(), scroller.getBg1().getPosition().x, scroller.getBg1().getPosition().y, Game.WIDTH, Game.HEIGHT);
+/*        spriteBatch.draw(scroller.getBg1().getTexture(), scroller.getBg1().getPosition().x, scroller.getBg1().getPosition().y, Game.WIDTH, Game.HEIGHT);
         spriteBatch.draw(scroller.getBg2().getTexture(), scroller.getBg2().getPosition().x, scroller.getBg2().getPosition().y, Game.WIDTH, Game.HEIGHT);
         spriteBatch.draw(scroller.getBg3().getTexture(), scroller.getBg3().getPosition().x, scroller.getBg3().getPosition().y, Game.WIDTH, Game.HEIGHT);
 
         spriteBatch.draw(scroller.getAsteroid().getTexture(), scroller.getAsteroid().getPosition().x, scroller.getAsteroid().getPosition().y, scroller.getAsteroid().getTexture().getWidth() / 4, scroller.getAsteroid().getTexture().getHeight() / 4);
-        spriteBatch.draw(scroller.getAsteroid2().getTexture(), scroller.getAsteroid2().getPosition().x, scroller.getAsteroid2().getPosition().y, scroller.getAsteroid2().getTexture().getWidth() / 4, scroller.getAsteroid2().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid2().getTexture(), scroller.getAsteroid2().getPosition().x, scroller.getAsteroid2().getPosition().y, scroller.getAsteroid2().getTexture().getWidth() / 4, scroller.getAsteroid2().getTexture().getHeight() / 4);*/
     }
 }
