@@ -1,4 +1,4 @@
-package org.hackathon.bitcommit;
+package org.hackathon.bitcommit.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
