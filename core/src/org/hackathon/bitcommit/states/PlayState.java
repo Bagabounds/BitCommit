@@ -33,6 +33,7 @@ public class PlayState extends State{
         spriteBatch.draw(ship, 50, 50);
 
         spriteBatch.end();
+
     }
 
     @Override
