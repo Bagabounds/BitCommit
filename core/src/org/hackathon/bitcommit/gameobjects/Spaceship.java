@@ -31,7 +31,7 @@ public class Spaceship {
                 velocity.x -= 60;
             }
 
-            //Gdx.app.log("velocity.x = ", velocity.x + "");
+            Gdx.app.log("velocity.x = ", velocity.x + "");
 
         } else if (input == 22) {
             // RIGHT
@@ -42,14 +42,50 @@ public class Spaceship {
                 velocity.x += 60;
             }
 
-            //Gdx.app.log("velocity.x = ", velocity.x + "");
+            Gdx.app.log("velocity.x = ", velocity.x + "");
 
             // todo: implementar logica UP para quando recebe power up
 
         }
     }
 
+/*    public void onKeyPressed(int input) {
+        if (input == 21) {
+            // LEFT
+
+            if (velocity.x > 0) {
+                velocity.x = 0;
+            } else if (velocity.x <= -240) {
+                return;
+            } else {
+                velocity.x -= 60;
+            }
+
+            Gdx.app.log("velocity.x = ", velocity.x + "");
+
+        } else if (input == 22) {
+            // RIGHT
+
+            if (velocity.x < 0) {
+                velocity.x = 0;
+            } else if (velocity.x >= 240) {
+                return;
+            } else {
+                velocity.x += 60;
+            }
+
+            Gdx.app.log("velocity.x = ", velocity.x + "");
+
+        }
+    }*/
+
     public void update(float delta) {
+
+/*        if (velocity.x > 0) {
+            velocity.x -= 2;
+        } else if (velocity.x < 0) {
+            velocity.x += 2;
+        }*/
 
         position.add(velocity.cpy().scl(delta));
 
