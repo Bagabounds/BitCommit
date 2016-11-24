@@ -25,4 +25,8 @@ public abstract class State {
     public abstract void render(SpriteBatch spriteBatch);
 
     public abstract void dispose();
+
+    public OrthographicCamera getCam(){
+        return cam;
+    }
 }
