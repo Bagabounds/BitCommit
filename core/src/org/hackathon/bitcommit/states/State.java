@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 public abstract class State {
     private OrthographicCamera cam;
     private Vector3 mouse;
-    private GameStateManager gsm;
+    public GameStateManager gsm;
 
     public State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -25,4 +25,8 @@ public abstract class State {
     public abstract void render(SpriteBatch spriteBatch);
 
     public abstract void dispose();
+
+    public OrthographicCamera getCam(){
+        return cam;
+    }
 }
