@@ -2,17 +2,20 @@ package org.hackathon.bitcommit.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.hackathon.bitcommit.game.Game;
 
 /**
  * Created by codecadet on 24/11/16.
  */
 public class PlayState extends State{
 
-    private Texture ship;
+    private Texture background;
+    private Texture spaceship;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        ship = new Texture("core/assets/ship1.gif");
+        background = new Texture("core/assets/background_1024.png");
+        spaceship = new Texture("core/assets/ship1.gif");
     }
 
     @Override
@@ -27,11 +30,9 @@ public class PlayState extends State{
 
     @Override
     public void render(SpriteBatch spriteBatch) {
-
         spriteBatch.begin();
-
-        spriteBatch.draw(ship, 50, 50);
-
+        spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
+        spriteBatch.draw(spaceship, 50, 50);
         spriteBatch.end();
     }
 
