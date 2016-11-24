@@ -32,6 +32,12 @@ public abstract class Scrollable {
         }
     }
 
+    public void reset(float x, float y){
+        position.x = x;
+        position.y = y;
+        isScrolledDown = false;
+    }
+
     public void reset(float y){
         position.y = y;
         isScrolledDown = false;
