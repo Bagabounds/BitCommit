@@ -4,8 +4,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
 
-import java.net.UnknownHostException;
-
 /**
  * Created by codecadet on 24/11/16.
  */
@@ -22,18 +20,14 @@ public class InputHandler implements InputProcessor{
 
         switch (keycode){
             case Input.Keys.LEFT:
-                try {
+
                     spaceship.onKeyPressed(Input.Keys.LEFT);
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
+
                 break;
             case Input.Keys.RIGHT:
-                try {
+
                     spaceship.onKeyPressed(Input.Keys.RIGHT);
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
+
                 break;
         }
         return true;

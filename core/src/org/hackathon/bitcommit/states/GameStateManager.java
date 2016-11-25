@@ -3,6 +3,7 @@ package org.hackathon.bitcommit.states;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Stack;
 
 /**
@@ -30,7 +31,11 @@ public class GameStateManager {
     }
 
     public void update(float delta) throws SocketException {
-        states.peek().update(delta);
+        try {
+            states.peek().update(delta);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     public void render(SpriteBatch spriteBatch){

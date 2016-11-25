@@ -7,6 +7,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
 import org.hackathon.bitcommit.helpers.InputHandler;
+import org.hackathon.bitcommit.scrollable.ScrollHandler;
+
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 /**
  * Created by codecadet on 24/11/16.
@@ -19,15 +23,15 @@ public class PlayState extends State{
     private final Spaceship opponent;
     private ScrollHandler scroller;
 
-    public PlayState(GameStateManager gsm) {
+    public PlayState(GameStateManager gsm) throws SocketException {
         super(gsm);
-        background = new Texture("core/assets/background_1024.png");
+        //background = new Texture("core/assets/background_1024.png");
         opponent = new Spaceship(40,150, this);
         spaceship = new Spaceship(20,50,this);
         System.out.println("PS: " + opponent);
         System.out.println(Thread.currentThread().getName());
         //background = new Texture("core/assets/background_1024.png");
-        spaceship = new Spaceship(20,50);
+        spaceship = new Spaceship(20,50,this);
         scroller = new ScrollHandler();
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
         Gdx.input.setInputProcessor(new InputHandler(spaceship));
@@ -39,7 +43,7 @@ public class PlayState extends State{
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta) throws UnknownHostException {
         handleInput();
         spaceship.update(delta);
         scroller.update(delta);
