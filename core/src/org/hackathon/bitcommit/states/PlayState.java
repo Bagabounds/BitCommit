@@ -3,6 +3,7 @@ package org.hackathon.bitcommit.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
@@ -43,7 +44,7 @@ public class PlayState extends State{
     }
 
     @Override
-    public void update(float delta) throws UnknownHostException {
+    public void update(float delta) {
         handleInput();
         spaceship.update(delta);
         scroller.update(delta);
@@ -52,6 +53,11 @@ public class PlayState extends State{
             spaceship.sendPosition();
         } catch (UnknownHostException e) {
             e.printStackTrace();
+        }
+        if(collides(scroller.getCircle1())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+            System.out.println(collides(scroller.getCircle1()));
         }
     }
 
@@ -72,6 +78,9 @@ public class PlayState extends State{
     @Override
     public void dispose() {
 
+        spaceship.dispose();
+        scroller.dispose();
+
     }
 
     public Spaceship getSpaceship() {
@@ -90,10 +99,16 @@ public class PlayState extends State{
 
         spriteBatch.draw(scroller.getAsteroid1().getTexture(), scroller.getAsteroid1().getPosition().x, scroller.getAsteroid1().getPosition().y, scroller.getAsteroid1().getTexture().getWidth() / 4, scroller.getAsteroid1().getTexture().getHeight() / 4);
         spriteBatch.draw(scroller.getAsteroid2().getTexture(), scroller.getAsteroid2().getPosition().x, scroller.getAsteroid2().getPosition().y, scroller.getAsteroid2().getTexture().getWidth() / 4, scroller.getAsteroid2().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid3().getTexture(), scroller.getAsteroid3().getPosition().x, scroller.getAsteroid3().getPosition().y, scroller.getAsteroid3().getTexture().getWidth() / 4, scroller.getAsteroid3().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid4().getTexture(), scroller.getAsteroid4().getPosition().x, scroller.getAsteroid4().getPosition().y, scroller.getAsteroid4().getTexture().getWidth() / 4, scroller.getAsteroid4().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid5().getTexture(), scroller.getAsteroid5().getPosition().x, scroller.getAsteroid5().getPosition().y, scroller.getAsteroid5().getTexture().getWidth() / 4, scroller.getAsteroid5().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid6().getTexture(), scroller.getAsteroid6().getPosition().x, scroller.getAsteroid6().getPosition().y, scroller.getAsteroid6().getTexture().getWidth() / 4, scroller.getAsteroid6().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid7().getTexture(), scroller.getAsteroid7().getPosition().x, scroller.getAsteroid7().getPosition().y, scroller.getAsteroid7().getTexture().getWidth() / 4, scroller.getAsteroid7().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid8().getTexture(), scroller.getAsteroid8().getPosition().x, scroller.getAsteroid8().getPosition().y, scroller.getAsteroid8().getTexture().getWidth() / 4, scroller.getAsteroid8().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid9().getTexture(), scroller.getAsteroid9().getPosition().x, scroller.getAsteroid9().getPosition().y, scroller.getAsteroid9().getTexture().getWidth() / 4, scroller.getAsteroid9().getTexture().getHeight() / 4);
     }
 
-    public boolean collides(){
-        //return scroller.getAsteroid1().
-        return false;
+    public boolean collides(Circle circle){
+        return spaceship.getCircle().overlaps(circle);
     }
 }

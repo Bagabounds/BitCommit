@@ -2,6 +2,8 @@ package org.hackathon.bitcommit.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.states.PlayState;
@@ -25,11 +27,13 @@ public class Spaceship {
     private ReceiveData receiveData;
     private PlayState playState;
     private Spaceship opponent;
+    private Circle circle;
 
     private Texture texture;
     private Texture opponentTexture = new Texture("core/assets/ship2.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
+
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
         texture = new Texture("core/assets/resizewithouterglow.png");
@@ -43,6 +47,9 @@ public class Spaceship {
         thread = new Thread(receiveData);
         thread.start();
         this.playState = playState;
+        //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        circle = new Circle(x, y, 28);
+
     }
 
     public Texture getOpponentTexture() {
@@ -125,6 +132,9 @@ public class Spaceship {
             velocity.x = 0;
         }
 
+        //rectangle.setPosition(position.x, position.y);
+        circle.setPosition(position.x, position.y);
+
     }
 
     public Vector3 getPosition() {
@@ -147,5 +157,13 @@ public class Spaceship {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public void dispose() {
+        texture.dispose();
     }
 }
