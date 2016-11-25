@@ -35,6 +35,7 @@ public class ScrollHandler {
     private int[] asteroidX; // x spawn coordinates
     private int[] asteroidY; // y spawn coordinates
     private Asteroid[] asteroidArray = new Asteroid[5];
+    private String [] textureArray;
 
 
     public static final int PADDING = 256; // asteroid diameter
@@ -289,14 +290,16 @@ public class ScrollHandler {
         };
         int count = 0;
         int i = randomAsteroidRef;
+        textureArray = new String[]{"core/assets/muchasteroidresize.png","core/assets/asteroid2_.png"};
         for (int j = 0; j < asteroidMatrix[i].length; j++) {
             if (asteroidMatrix[i][j] == 1) {
 
+                int rng = (int) Math.floor(Math.random()*2);
                 System.out.println("linha da matriz: "+i);
-                asteroidArray[count] = new Asteroid(asteroidX[j], asteroidY[count], AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-                System.out.println("asteroidX[j]: " + asteroidX[j]);
+                asteroidArray[count] = new Asteroid(asteroidX[j], asteroidY[count], AST_SCROLL_SPEED, textureArray[rng]);
+                /*System.out.println("asteroidX[j]: " + asteroidX[j]);
                 System.out.println("asteroidY[count]: " + asteroidY[count]);
-                System.out.println("asteroidArray[count].getTexture().getWidth()/5: " + asteroidArray[count].getTexture().getWidth() / 5);
+                System.out.println("asteroidArray[count].getTexture().getWidth()/5: " + asteroidArray[count].getTexture().getWidth() / 5);*/
 
                 circleArray[count] = new Circle(asteroidX[j], asteroidY[count], asteroidArray[count].getTexture().getWidth() / 5);
                 count++;
