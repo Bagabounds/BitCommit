@@ -1,6 +1,8 @@
 package org.hackathon.bitcommit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.hackathon.bitcommit.game.Game;
@@ -12,13 +14,19 @@ import java.net.SocketException;
  */
 public class MenuState extends State {
 
+    private final Music music2;
     private Texture background;
     private Texture playButton;
+    private Sound music;
+    private Sound sfx;
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("core/assets/menuStateScreenFinal.png");
         playButton = new Texture("core/assets/play.png");
+        music2 = Game.assetManager.get("core/assets/audio/music/menusound.mp3",Music.class);
+        music2.play();
+
     }
 
     @Override
@@ -49,8 +57,11 @@ public class MenuState extends State {
 
     @Override
     public void dispose() {
+        music = Game.assetManager.get("core/assets/audio/sfx/clicktostart.wav",Sound.class);
+        music.play();
         background.dispose();
         playButton.dispose();
+        music2.dispose();
     }
 
 

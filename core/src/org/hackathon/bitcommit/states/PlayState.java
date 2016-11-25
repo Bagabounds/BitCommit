@@ -1,6 +1,7 @@
 package org.hackathon.bitcommit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -27,6 +28,9 @@ public class PlayState extends State {
     private ScrollHandler scroller;
     private Hud hud;
     private FileManager fileManager;
+    private Music music;
+    private Music music2;
+
 
     public PlayState(GameStateManager gsm) throws SocketException {
         super(gsm);
@@ -42,6 +46,13 @@ public class PlayState extends State {
         Gdx.input.setInputProcessor(new InputHandler(spaceship));
         hud = new Hud(Game.spriteBatch);
         fileManager = new FileManager();
+        music = Game.assetManager.get("core/assets/audio/music/gameplaysound.wav",Music.class);
+        music2 = Game.assetManager.get("/Users/codecadet/Desktop/BitCommit/core/assets/audio/sfx/shipsound_1.wav",Music.class);
+
+        music.setLooping(true);
+        music.play();
+        music2.play();
+
     }
 
     @Override
@@ -132,6 +143,8 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
+        music.dispose();
+        music2.dispose();
 
         spaceship.dispose();
         scroller.dispose();

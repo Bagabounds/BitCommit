@@ -1,6 +1,7 @@
 package org.hackathon.bitcommit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.hackathon.bitcommit.game.Game;
@@ -12,6 +13,7 @@ import java.net.SocketException;
  */
 public class GameOverState extends State{
 
+    private final Music music;
     private Texture background;
 
 
@@ -19,6 +21,9 @@ public class GameOverState extends State{
     public GameOverState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("/Users/codecadet/Desktop/BitCommit/core/assets/gameOverScreen.png");
+        music = Game.assetManager.get("core/assets/audio/music/gameoversound(1).ogg",Music.class);
+        music.play();
+
 
     }
 
@@ -52,6 +57,7 @@ public class GameOverState extends State{
     @Override
     public void dispose() {
         background.dispose();
+        music.dispose();
 
     }
 }

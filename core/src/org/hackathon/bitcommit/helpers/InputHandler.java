@@ -2,7 +2,9 @@ package org.hackathon.bitcommit.helpers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
 
 /**
@@ -23,10 +25,12 @@ public class InputHandler implements InputProcessor{
             case Input.Keys.LEFT:
                     spaceship.onKeyPressed(Input.Keys.LEFT);
                     spaceship.changeTexture(new Texture("core/assets/shipleft.png"));
+                Game.assetManager.get("core/assets/audio/sfx/turnsound_final_.wav" , Sound.class).play();
                 break;
             case Input.Keys.RIGHT:
                     spaceship.onKeyPressed(Input.Keys.RIGHT);
                 spaceship.changeTexture(new Texture("core/assets/shipright.png"));
+                Game.assetManager.get("core/assets/audio/sfx/turnsound_final_.wav" , Sound.class).play();
 
                 break;
         }
