@@ -31,6 +31,7 @@ public class Spaceship {
 
     private Texture texture;
     private Texture opponentTexture = new Texture("core/assets/resizewithouterglow2.png");
+    private Texture transparent = new Texture("core/assets/spritetransparente.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 
@@ -47,6 +48,7 @@ public class Spaceship {
         thread = new Thread(receiveData);
         thread.start();
         this.playState = playState;
+        //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
         circle = new Circle(x, y, 10);
 
     }
@@ -172,6 +174,14 @@ public class Spaceship {
 
     public int getAsteroidReference() {
         return asteroidReference;
+    }
+
+    public void setTransparent() {
+        this.transparent = opponentTexture;
+    }
+
+    public Texture getTransparent() {
+        return transparent;
     }
 
     public void changeTexture(Texture texture){
