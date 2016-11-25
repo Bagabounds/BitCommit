@@ -20,13 +20,12 @@ public class GameOverState extends State{
     private final Music music;
     private Texture background;
 
-    private Texture resetButton;
     private Label highScoreLabel;
 
 
     public GameOverState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("/Users/codecadet/Desktop/BitCommit/core/assets/gameOverScreen.png");
+        background = new Texture("core/assets/gameOverScreen.png");
         music = Game.assetManager.get("core/assets/audio/music/gameoversound(1).ogg",Music.class);
         music.play();
 
@@ -56,8 +55,6 @@ public class GameOverState extends State{
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.begin();
         spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
-
-        spriteBatch.draw(resetButton, (Game.WIDTH/2) - (resetButton.getWidth()/2), (float)(Game.HEIGHT/4));
 
 
         highScoreLabel = new Label(String.format("%03d", Hud.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));

@@ -50,7 +50,7 @@ public class ReceiveData implements Runnable{
                     Vector3 opponentPosition = new Vector3(x,y,z);
                     System.out.println(x + " " + y + " " + z);
 
-                    if(!opponent.isGameMode()) {
+                    /*if(!opponent.isGameMode()) {
                         if (opponent.getPosition().x > x) {
                             //set right texture
                             opponent.setTexture(new Texture("core/assets/ship2right.png"));
@@ -61,13 +61,15 @@ public class ReceiveData implements Runnable{
                             //set still position
                             opponent.setTexture(new Texture("core/assets/ship2.png"));
                         }
-                        opponent.setPosition(opponentPosition);
+
                         
                         if(opponent.isGameMode())
                             opponent.setGameMode(false);
                         else
                             opponent.setGameMode(true);
-                    }
+                    }*/
+
+                    opponent.setPosition(opponentPosition);
                 }
 
             }

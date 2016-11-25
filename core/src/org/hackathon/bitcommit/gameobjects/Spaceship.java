@@ -47,7 +47,7 @@ public class Spaceship {
         opponentTexture1 = new Texture("core/assets/ship2.png");
         easterEggTexture = new Texture("core/assets/eastereggspriteresize.png");
         easterEggTexture2 = new Texture("core/assets/eastereggspriteresize.png");
-        opponentCurrentTexture = new Texture("core/assets/ship2.png");;
+        opponentCurrentTexture = transparent;
 
         socket = new DatagramSocket();
         sendBuffer = new byte[2048];
