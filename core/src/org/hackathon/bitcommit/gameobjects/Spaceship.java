@@ -47,7 +47,7 @@ public class Spaceship {
         thread.start();
         this.playState = playState;
         //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
-        circle = new Circle(x, y, 28);
+        circle = new Circle(x, y, 10);
 
     }
 

@@ -99,21 +99,21 @@ public class ScrollHandler {
             System.out.println(randomPos);
             asteroid1.reset(randomPos, Game.HEIGHT + 100);
         } else if(asteroid2.isScrolledDown()){
-            asteroid2.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid2.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid3.isScrolledDown()){
-            asteroid3.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid3.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid4.isScrolledDown()){
-            asteroid4.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid4.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid5.isScrolledDown()){
-            asteroid5.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid5.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid6.isScrolledDown()){
-            asteroid6.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid6.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid7.isScrolledDown()){
-            asteroid7.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid7.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid8.isScrolledDown()){
-            asteroid8.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid8.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid9.isScrolledDown()){
-            asteroid9.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+200);
+            asteroid9.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         }
 
         repositionCircles();
@@ -123,6 +123,13 @@ public class ScrollHandler {
     public void repositionCircles(){
         circle1.setPosition(asteroid1.getPosition().x, asteroid1.getPosition().y);
         circle2.setPosition(asteroid2.getPosition().x, asteroid2.getPosition().y);
+        circle3.setPosition(asteroid3.getPosition().x, asteroid3.getPosition().y);
+        circle4.setPosition(asteroid4.getPosition().x, asteroid4.getPosition().y);
+        circle5.setPosition(asteroid5.getPosition().x, asteroid5.getPosition().y);
+        circle6.setPosition(asteroid6.getPosition().x, asteroid6.getPosition().y);
+        circle7.setPosition(asteroid7.getPosition().x, asteroid7.getPosition().y);
+        circle8.setPosition(asteroid8.getPosition().x, asteroid8.getPosition().y);
+        circle9.setPosition(asteroid9.getPosition().x, asteroid9.getPosition().y);
     }
 
     public void dispose(){
