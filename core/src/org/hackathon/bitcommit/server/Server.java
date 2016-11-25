@@ -119,11 +119,11 @@ public class Server implements Runnable {
         public void run() {
             String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 9) + 1));
             System.out.println("asteroide na posiçao " + asteroidPlace.toString());
-            DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.length());
+            DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.getBytes().length);
             for (int i = 0; i < clientList.size(); i++) {
-
                 clientList.get(i).sendPacket(asteroidPacked);
             }
+
 
 
         }
