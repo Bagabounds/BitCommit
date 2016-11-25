@@ -363,7 +363,7 @@ public class ScrollHandler {
             if (asteroidMatrix[i][j] == 1) {
 
                 int rng = (int) Math.floor(Math.random()*2);
-                System.out.println("linha da matriz: "+i);
+                //System.out.println("linha da matriz: "+i);
                 asteroidArray[count] = new Asteroid(asteroidX[j], asteroidY[count], AST_SCROLL_SPEED, textureArray[rng], "core/assets/eastereggobstacles.png");
                 /*System.out.println("asteroidX[j]: " + asteroidX[j]);
                 System.out.println("asteroidY[count]: " + asteroidY[count]);
