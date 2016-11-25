@@ -28,9 +28,9 @@ public class ReceiveData implements Runnable{
             while(true){
                 socket.receive(receivePacket);
                 String input = new String(receivePacket.getData(),0,receivePacket.getLength());
-                System.out.println("Received "+input);
 
-                System.out.println(opponent);
+                System.out.println("Received "+input);
+                System.out.println("opponent: " + opponent);
                 float x = Float.parseFloat(input.substring(input.indexOf("(")+1,input.indexOf(",")));
                 float y = Float.parseFloat(input.substring(input.indexOf(",")+1,input.lastIndexOf(",")));
                 float z = 0;

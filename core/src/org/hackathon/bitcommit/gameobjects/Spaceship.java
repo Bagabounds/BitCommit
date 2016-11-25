@@ -30,6 +30,7 @@ public class Spaceship {
     private Circle circle;
 
     private Texture texture;
+    private Texture opponentTexture = new Texture("core/assets/ship2.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 
@@ -49,6 +50,10 @@ public class Spaceship {
         //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
         circle = new Circle(x, y, 10);
 
+    }
+
+    public Texture getOpponentTexture() {
+        return opponentTexture;
     }
 
     public void onKeyPressed(int input) {
@@ -144,7 +149,7 @@ public class Spaceship {
         this.position = position;
     }
     public void sendPosition() throws UnknownHostException {
-        System.out.println("Position " + (position).toString() );
+        //System.out.println("Position " + (position).toString() );
         sendBuffer = ("1" + (position).toString()).getBytes();
         sendPacket = new DatagramPacket(sendBuffer,sendBuffer.length, InetAddress.getByName(hostName),portNumber);
         try {

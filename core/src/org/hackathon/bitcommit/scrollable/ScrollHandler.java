@@ -96,7 +96,7 @@ public class ScrollHandler {
 
         if(asteroid1.isScrolledDown()){
             int randomPos = (int) (Math.random() * Game.WIDTH);
-            System.out.println(randomPos);
+            System.out.println("random: " + randomPos);
             asteroid1.reset(randomPos, Game.HEIGHT + 100);
         } else if(asteroid2.isScrolledDown()){
             asteroid2.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
