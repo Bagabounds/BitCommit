@@ -2,6 +2,7 @@ package org.hackathon.bitcommit.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
 
@@ -12,13 +13,15 @@ public class Spaceship {
 
     private Vector3 position;
     private Vector3 velocity;
-
     private Texture texture;
+
+    private Rectangle rectangle;
 
     public Spaceship(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
         texture = new Texture("core/assets/resizewithouterglow.png");
+        rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
     }
 
     public void onKeyPressed(int input) {
@@ -97,6 +100,8 @@ public class Spaceship {
             velocity.x = 0;
         }
 
+        rectangle.setPosition(position.x, position.y);
+
     }
 
     public Vector3 getPosition() {
@@ -105,5 +110,9 @@ public class Spaceship {
 
     public Texture getTexture() {
         return texture;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }
