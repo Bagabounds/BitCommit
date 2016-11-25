@@ -13,13 +13,13 @@ import java.net.SocketException;
 public class GameOverState extends State{
 
     private Texture background;
-    private Texture resetButton;
+
 
 
     public GameOverState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("core/assets/GAMEOVERPLACEHOLDER.png");
-        resetButton = new Texture("core/assets/play.png");
+        background = new Texture("/Users/codecadet/Desktop/BitCommit/core/assets/gameOverScreen.png");
+
     }
 
     @Override
@@ -45,13 +45,13 @@ public class GameOverState extends State{
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.begin();
         spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
-        spriteBatch.draw(resetButton, (Game.WIDTH/2) - (resetButton.getWidth()/2), (float)(Game.HEIGHT/4));
+
         spriteBatch.end();
     }
 
     @Override
     public void dispose() {
         background.dispose();
-        resetButton.dispose();
+
     }
 }
