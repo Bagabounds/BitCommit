@@ -72,6 +72,7 @@ public class ScrollHandler {
         asteroid9 = new Asteroid(asteroidX[8], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
 */      //  System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
 
+        //System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
 
         circle1 = circleArray[0];
         circle2 = circleArray[1];
@@ -116,7 +117,7 @@ public class ScrollHandler {
 
         if(asteroid1.isScrolledDown()){
             int randomPos = (int) (Math.random() * Game.WIDTH);
-            System.out.println("random: " + randomPos);
+            //System.out.println("random: " + randomPos);
             asteroid1.reset(randomPos, Game.HEIGHT + 100);
         } else if(asteroid2.isScrolledDown()){
             asteroid2.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);

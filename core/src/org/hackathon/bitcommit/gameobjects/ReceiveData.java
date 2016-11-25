@@ -32,6 +32,7 @@ public class ReceiveData implements Runnable{
                 String input = new String(receivePacket.getData(),0,receivePacket.getLength());
 
 
+
                 if (input.length() == 1){
                     opponent.setAsteroidReference(Integer.parseInt(input));
                     System.out.println("Received asteroid "+input);
