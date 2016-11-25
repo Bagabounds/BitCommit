@@ -1,5 +1,6 @@
 package org.hackathon.bitcommit.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
@@ -43,8 +44,7 @@ public class Spaceship {
         this.playState = playState;
     }
 
-    public void onKeyPressed(int input) throws UnknownHostException {
-
+    public void onKeyPressed(int input) {
         if (input == 21) {
             // LEFT
 
@@ -65,19 +65,11 @@ public class Spaceship {
                 velocity.x += 60;
             }
 
-<<<<<<< HEAD
-
-
-            //Gdx.app.log("velocity.x = ", velocity.x + "");
-=======
             Gdx.app.log("velocity.x = ", velocity.x + "");
->>>>>>> 523d298f77412cbaf150526598f5e88e8c181cdb
 
             // todo: implementar logica UP para quando recebe power up
 
         }
-
-
     }
 
 /*    public void onKeyPressed(int input) {

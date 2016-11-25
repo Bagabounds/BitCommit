@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.hackathon.bitcommit.game.Game;
 
-import java.net.SocketException;
-
 /**
  * Created by codecadet on 24/11/16.
  */
@@ -22,20 +20,16 @@ public class MenuState extends State {
     }
 
     @Override
-    public void handleInput() throws SocketException {
+    public void handleInput() {
         if(Gdx.input.justTouched()){
-<<<<<<< HEAD
-            System.out.println("handleionput");
+            //TODO: check this line
             gsm.set(new PlayState(gsm));
-=======
-            gsm.set(new TestScrollState(gsm));
->>>>>>> 523d298f77412cbaf150526598f5e88e8c181cdb
             dispose();
         }
     }
 
     @Override
-    public void update(float delta) throws SocketException {
+    public void update(float delta) {
         handleInput();
     }
 
