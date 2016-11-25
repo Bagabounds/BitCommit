@@ -2,6 +2,7 @@ package org.hackathon.bitcommit.helpers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
 import org.hackathon.bitcommit.scrollable.ScrollHandler;
 
@@ -24,9 +25,13 @@ public class InputHandler implements InputProcessor {
         switch (keycode) {
             case Input.Keys.LEFT:
                 spaceship.onKeyPressed(Input.Keys.LEFT);
+                if(!spaceship.isGameMode())
+                    spaceship.changeTexture(new Texture("core/assets/shipleft.png"));
                 break;
             case Input.Keys.RIGHT:
                 spaceship.onKeyPressed(Input.Keys.RIGHT);
+                if(!spaceship.isGameMode())
+                    spaceship.changeTexture(new Texture("core/assets/shipright.png"));
                 break;
             case Input.Keys.UP:
                 spaceship.onKeyPressed(Input.Keys.UP);
@@ -38,6 +43,10 @@ public class InputHandler implements InputProcessor {
                 spaceship.changeSprites();
                 spaceship.changeOpponentForReal();
                 scroller.changeSprites();
+                if(spaceship.isGameMode())
+                    spaceship.setGameMode(false);
+                else
+                    spaceship.setGameMode(true);
                 break;
             case Input.Keys.ESCAPE:
                 System.exit(0);

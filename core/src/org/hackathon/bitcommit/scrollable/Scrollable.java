@@ -57,9 +57,9 @@ public abstract class Scrollable {
         return position;
     }
 
-    public Vector3 getVelocity() {
+    /*public Vector3 getVelocity() {
         return velocity;
-    }
+    }*/
 
     public Texture getTexture(){
         return texture;

@@ -27,12 +27,17 @@ public class Spaceship {
     private PlayState playState;
     private Spaceship opponent;
     private Circle circle;
+    private int asteroidReference;
+
+    private boolean gameMode;
 
     private Texture texture;
     private Texture opponentTexture1;
     private Texture opponentCurrentTexture;
     private Texture easterEggTexture;
     private Texture easterEggTexture2;
+    private Texture opponentTexture = new Texture("core/assets/resizewithouterglow2.png");
+    private Texture transparent = new Texture("core/assets/spritetransparente.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 
@@ -73,7 +78,7 @@ public class Spaceship {
                 velocity.x -= 80;
             }
 
-            Gdx.app.log("velocity.x = ", velocity.x + "");
+            //Gdx.app.log("velocity.x = ", velocity.x + "");
 
         } else if (input == 22) {
             // RIGHT
@@ -85,7 +90,7 @@ public class Spaceship {
             }
 
 
-            Gdx.app.log("velocity.x = ", velocity.x + "");
+            //Gdx.app.log("velocity.x = ", velocity.x + "");
 
             // todo: implementar logica UP para quando recebe power up
 
@@ -104,6 +109,9 @@ public class Spaceship {
     }
 
     public void update(float delta) {
+
+        if(velocity.x == 0 && !isGameMode())
+            texture = new Texture("core/assets/resizewithouterglow.png");
 
         if (velocity.x > 0) {
             velocity.x -= 2;
@@ -131,6 +139,10 @@ public class Spaceship {
 
     }
 
+    public void setTexture(Texture texture){
+        this.opponentCurrentTexture = texture;
+    }
+
 
 
     public Vector3 getPosition() {
@@ -144,6 +156,15 @@ public class Spaceship {
     public void setPosition(Vector3 position) {
         this.position = position;
     }
+
+    public boolean isGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(boolean gameMode) {
+        this.gameMode = gameMode;
+    }
+
     public void sendPosition() throws UnknownHostException {
         //System.out.println("Position " + (position).toString() );
         sendBuffer = ("1" + (position).toString()).getBytes();
@@ -184,4 +205,24 @@ public class Spaceship {
 
 
 
+
+    public void setAsteroidReference(int asteroidReference) {
+        this.asteroidReference = asteroidReference;
+    }
+
+    public int getAsteroidReference() {
+        return asteroidReference;
+    }
+
+    public void setTransparent() {
+        this.transparent = opponentTexture;
+    }
+
+    public Texture getTransparent() {
+        return transparent;
+    }
+
+    public void changeTexture(Texture texture){
+        this.texture = texture;
+    }
 }

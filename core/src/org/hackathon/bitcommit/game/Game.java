@@ -16,20 +16,15 @@ public class Game extends ApplicationAdapter {
 	public static final int WIDTH = 680;
 	public static final int HEIGHT = 1024;
 	public static final String title = "<Bit Commit_>";
+	public static SpriteBatch spriteBatch;
 	private GameStateManager gsm;
 
-	private SpriteBatch spriteBatch;
-	private Texture img;
-	private Hud hud;
 	
 	@Override
 	public void create () {
 		spriteBatch = new SpriteBatch();
-		//img = new Texture("core/assets/badlogic.jpg");
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
-		hud = new Hud(spriteBatch);
-
 	}
 
 	// render() method is on loop
@@ -44,12 +39,6 @@ public class Game extends ApplicationAdapter {
 			e.printStackTrace();
 		}
 		gsm.render(spriteBatch);
-		spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
-		hud.stage.draw();
-
-/*		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();*/
 	}
 	
 	@Override
