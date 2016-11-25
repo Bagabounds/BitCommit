@@ -173,4 +173,8 @@ public class Spaceship {
     public int getAsteroidReference() {
         return asteroidReference;
     }
+
+    public void changeTexture(Texture texture){
+        this.texture = texture;
+    }
 }

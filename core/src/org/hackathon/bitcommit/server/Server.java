@@ -118,13 +118,8 @@ public class Server implements Runnable {
         @Override
         public void run() {
             String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 9) + 1));
-<<<<<<< HEAD
-            //System.out.println("asteroide na posiçao " + asteroidPlace.toString());
-            DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.length());
-            for (int i = 0; i < clientList.size(); i++) {
-                clientList.get(i).sendPacket(asteroidPacked);
-            }
-=======
+
+
             System.out.println("asteroide na posiçao " + asteroidPlace.toString());
             DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.getBytes().length);
             for (int i = 0; i < clientList.size(); i++) {
@@ -133,7 +128,7 @@ public class Server implements Runnable {
 
 
 
->>>>>>> ba6713810bdee42511eead3651f4a2abe0c89d71
+
         }
     }
 }
