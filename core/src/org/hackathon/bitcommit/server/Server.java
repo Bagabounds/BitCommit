@@ -29,7 +29,7 @@ public class Server implements Runnable {
         int portNumber = 5000;
         clientList = new LinkedList();
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new asteroidGenerator(), 0, 4000);
+        timer.scheduleAtFixedRate(new asteroidGenerator(), 0, 3000);
 
 
         try {
@@ -117,7 +117,7 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 9) + 1));
+            String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 10)));
             System.out.println("asteroide na posiçao " + asteroidPlace.toString());
             DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.getBytes().length);
             for (int i = 0; i < clientList.size(); i++) {

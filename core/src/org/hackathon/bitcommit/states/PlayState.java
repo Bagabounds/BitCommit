@@ -81,7 +81,7 @@ public class PlayState extends State {
             gsm.set(new GameOverState(gsm));
             dispose();
         }
-        if (collides(scroller.getCircle6())) {
+/*        if (collides(scroller.getCircle6())) {
             gsm.set(new GameOverState(gsm));
             dispose();
         }
@@ -96,7 +96,7 @@ public class PlayState extends State {
         if (collides(scroller.getCircle9())) {
             gsm.set(new GameOverState(gsm));
             dispose();
-        }
+        }*/
     }
 
     @Override
@@ -107,9 +107,10 @@ public class PlayState extends State {
 
         spriteBatch.begin();
         //spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
+        scroller.generateAsteroids(opponent.getAsteroidReference());
         drawBackgroundImages(spriteBatch);
         spriteBatch.draw(spaceship.getTexture(), spaceship.getPosition().x, spaceship.getPosition().y);
-        spriteBatch.draw(opponent.getOpponentTexture(), opponent.getPosition().x, opponent.getPosition().y);
+        spriteBatch.draw(opponent.getTransparent(), opponent.getPosition().x, opponent.getPosition().y);
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         spriteBatch.end();
         hud.stage.draw();
@@ -143,10 +144,10 @@ public class PlayState extends State {
         spriteBatch.draw(scroller.getAsteroid3().getTexture(), scroller.getAsteroid3().getPosition().x, scroller.getAsteroid3().getPosition().y, scroller.getAsteroid3().getTexture().getWidth() / 4, scroller.getAsteroid3().getTexture().getHeight() / 4);
         spriteBatch.draw(scroller.getAsteroid4().getTexture(), scroller.getAsteroid4().getPosition().x, scroller.getAsteroid4().getPosition().y, scroller.getAsteroid4().getTexture().getWidth() / 4, scroller.getAsteroid4().getTexture().getHeight() / 4);
         spriteBatch.draw(scroller.getAsteroid5().getTexture(), scroller.getAsteroid5().getPosition().x, scroller.getAsteroid5().getPosition().y, scroller.getAsteroid5().getTexture().getWidth() / 4, scroller.getAsteroid5().getTexture().getHeight() / 4);
-        spriteBatch.draw(scroller.getAsteroid6().getTexture(), scroller.getAsteroid6().getPosition().x, scroller.getAsteroid6().getPosition().y, scroller.getAsteroid6().getTexture().getWidth() / 4, scroller.getAsteroid6().getTexture().getHeight() / 4);
+/*        spriteBatch.draw(scroller.getAsteroid6().getTexture(), scroller.getAsteroid6().getPosition().x, scroller.getAsteroid6().getPosition().y, scroller.getAsteroid6().getTexture().getWidth() / 4, scroller.getAsteroid6().getTexture().getHeight() / 4);
         spriteBatch.draw(scroller.getAsteroid7().getTexture(), scroller.getAsteroid7().getPosition().x, scroller.getAsteroid7().getPosition().y, scroller.getAsteroid7().getTexture().getWidth() / 4, scroller.getAsteroid7().getTexture().getHeight() / 4);
         spriteBatch.draw(scroller.getAsteroid8().getTexture(), scroller.getAsteroid8().getPosition().x, scroller.getAsteroid8().getPosition().y, scroller.getAsteroid8().getTexture().getWidth() / 4, scroller.getAsteroid8().getTexture().getHeight() / 4);
-        spriteBatch.draw(scroller.getAsteroid9().getTexture(), scroller.getAsteroid9().getPosition().x, scroller.getAsteroid9().getPosition().y, scroller.getAsteroid9().getTexture().getWidth() / 4, scroller.getAsteroid9().getTexture().getHeight() / 4);
+        spriteBatch.draw(scroller.getAsteroid9().getTexture(), scroller.getAsteroid9().getPosition().x, scroller.getAsteroid9().getPosition().y, scroller.getAsteroid9().getTexture().getWidth() / 4, scroller.getAsteroid9().getTexture().getHeight() / 4);*/
     }
 
     public boolean collides(Circle circle) {

@@ -39,6 +39,7 @@ public class ReceiveData implements Runnable{
                 }
 
                 else {
+                    opponent.setTransparent();
                     System.out.println("Received "+input);
                     System.out.println("opponent: " + opponent);
                     float x = Float.parseFloat(input.substring(input.indexOf("(")+1,input.indexOf(",")));

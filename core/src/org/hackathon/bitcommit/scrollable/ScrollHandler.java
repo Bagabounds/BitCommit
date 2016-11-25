@@ -31,6 +31,11 @@ public class ScrollHandler {
     private Circle circle8;
     private Circle circle9;
 
+    private Circle[] circleArray;
+    private int[] asteroidX; // x spawn coordinates
+    private int[] asteroidY; // y spawn coordinates
+    private Asteroid [] asteroidArray = new Asteroid[5];
+
 
 
     public static final int PADDING = 256; // asteroid diameter
@@ -44,29 +49,44 @@ public class ScrollHandler {
         bg2 = new Background(0, (int) (bg1.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice2.jpg");
         bg3 = new Background(0, (int) (bg2.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice1.jpg");
 
-        int[] asteroidX = getRandoms();
+        //int[] asteroidX = getRandoms();
+        asteroidX = getAsteroidSpawn();
+        asteroidY = new int[]{(Game.HEIGHT + 100), (Game.HEIGHT - 200), (Game.HEIGHT + 50), (Game.HEIGHT - 90), (Game.HEIGHT -150)};
 
-        asteroid1 = new Asteroid(asteroidX[0], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        generateAsteroids(3);
+
+
+        asteroid1 = asteroidArray[0];
+        asteroid2 = asteroidArray[1];
+        asteroid3 = asteroidArray[2];
+        asteroid4 = asteroidArray[3];
+        asteroid5 = asteroidArray[4];
+        /*asteroid1 = new Asteroid(asteroidX[0], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
         asteroid2 = new Asteroid(asteroidX[1], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
-        asteroid3 = new Asteroid(asteroidX[2], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        asteroid3 = new Asteroid(asteroidX[2], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid4 = new Asteroid(asteroidX[3], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
-        asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
+        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");*/
+        /*asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid7 = new Asteroid(asteroidX[6], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
         asteroid8 = new Asteroid(asteroidX[7], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid9 = new Asteroid(asteroidX[8], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+*/      //  System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
 
-        System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
 
-        circle1 = new Circle(asteroidX[0], Game.HEIGHT + 100, asteroid1.getTexture().getWidth()/5);
+        circle1 = circleArray[0];
+        circle2 = circleArray[1];
+        circle3 = circleArray[2];
+        circle4 = circleArray[3];
+        circle5 = circleArray[4];
+        /*circle1 = new Circle(asteroidX[0], Game.HEIGHT + 100, asteroid1.getTexture().getWidth()/5);
         circle2 = new Circle(asteroidX[1], Game.HEIGHT - 200, asteroid2.getTexture().getWidth()/5);
         circle3 = new Circle(asteroidX[2], Game.HEIGHT + 100, asteroid3.getTexture().getWidth()/5);
         circle4 = new Circle(asteroidX[3], Game.HEIGHT - 200, asteroid4.getTexture().getWidth()/5);
-        circle5 = new Circle(asteroidX[4], Game.HEIGHT + 100, asteroid5.getTexture().getWidth()/5);
-        circle6 = new Circle(asteroidX[5], Game.HEIGHT - 200, asteroid6.getTexture().getWidth()/5);
+        circle5 = new Circle(asteroidX[4], Game.HEIGHT + 100, asteroid5.getTexture().getWidth()/5);*/
+        /*circle6 = new Circle(asteroidX[5], Game.HEIGHT - 200, asteroid6.getTexture().getWidth()/5);
         circle7 = new Circle(asteroidX[6], Game.HEIGHT + 100, asteroid7.getTexture().getWidth()/5);
         circle8 = new Circle(asteroidX[7], Game.HEIGHT - 200, asteroid8.getTexture().getWidth()/5);
-        circle9 = new Circle(asteroidX[8], Game.HEIGHT + 100, asteroid9.getTexture().getWidth()/5);
+        circle9 = new Circle(asteroidX[8], Game.HEIGHT + 100, asteroid9.getTexture().getWidth()/5);*/
 
     }
 
@@ -81,10 +101,10 @@ public class ScrollHandler {
         asteroid3.update(delta);
         asteroid4.update(delta);
         asteroid5.update(delta);
-        asteroid6.update(delta);
+/*        asteroid6.update(delta);
         asteroid7.update(delta);
         asteroid8.update(delta);
-        asteroid9.update(delta);
+        asteroid9.update(delta);*/
 
         if(bg1.isScrolledDown()){
             bg1.reset(bg3.getPosition().y + Game.HEIGHT);
@@ -106,7 +126,7 @@ public class ScrollHandler {
             asteroid4.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid5.isScrolledDown()){
             asteroid5.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
-        } else if(asteroid6.isScrolledDown()){
+        }/* else if(asteroid6.isScrolledDown()){
             asteroid6.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid7.isScrolledDown()){
             asteroid7.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
@@ -114,7 +134,7 @@ public class ScrollHandler {
             asteroid8.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
         } else if(asteroid9.isScrolledDown()){
             asteroid9.reset((int) (Math.random() * Game.WIDTH), Game.HEIGHT+10);
-        }
+        }*/
 
         repositionCircles();
 
@@ -126,10 +146,10 @@ public class ScrollHandler {
         circle3.setPosition(asteroid3.getPosition().x, asteroid3.getPosition().y);
         circle4.setPosition(asteroid4.getPosition().x, asteroid4.getPosition().y);
         circle5.setPosition(asteroid5.getPosition().x, asteroid5.getPosition().y);
-        circle6.setPosition(asteroid6.getPosition().x, asteroid6.getPosition().y);
+/*        circle6.setPosition(asteroid6.getPosition().x, asteroid6.getPosition().y);
         circle7.setPosition(asteroid7.getPosition().x, asteroid7.getPosition().y);
         circle8.setPosition(asteroid8.getPosition().x, asteroid8.getPosition().y);
-        circle9.setPosition(asteroid9.getPosition().x, asteroid9.getPosition().y);
+        circle9.setPosition(asteroid9.getPosition().x, asteroid9.getPosition().y);*/
     }
 
     public void dispose(){
@@ -142,10 +162,10 @@ public class ScrollHandler {
         asteroid3.dispose();
         asteroid4.dispose();
         asteroid5.dispose();
-        asteroid6.dispose();
+/*        asteroid6.dispose();
         asteroid7.dispose();
         asteroid8.dispose();
-        asteroid9.dispose();
+        asteroid9.dispose();*/
 
 
 
@@ -159,6 +179,16 @@ public class ScrollHandler {
 
         return array;
     }
+
+    public int[] getAsteroidSpawn(){
+        int[] array = new int[9];
+
+        for(int i = 1; i < 10; i++)
+            array[i-1] = (i * Game.WIDTH/10)/* - PADDING*/;
+
+        return array;
+    }
+
 
     public Background getBg1() {
         return bg1;
@@ -243,4 +273,35 @@ public class ScrollHandler {
     public Circle getCircle2() {
         return circle2;
     }
-}
+
+    public void generateAsteroids(int randomAsteroidRef){
+        circleArray = new Circle[5];
+        int [][] asteroidMatrix = {
+                {0,1,0,1,1,0,1,0,1},
+                {1,1,0,1,0,0,1,1,0},
+                {1,0,1,0,0,1,1,0,1},
+                {0,0,1,0,1,1,1,0,1},
+                {1,1,1,0,1,0,0,1,0},
+                {0,0,1,1,1,0,1,1,0},
+                {1,1,0,1,1,0,0,1,0},
+                {0,1,0,0,1,1,0,1,1},
+                {1,1,0,0,1,0,1,0,1},
+                {0,1,0,1,0,1,0,1,1},
+        };
+        int count = 0;
+            int i = randomAsteroidRef;
+            for (int j = 0; j < asteroidMatrix[i].length; j++) {
+                if (asteroidMatrix[i][j] == 1){
+
+                    asteroidArray[count] = new Asteroid(asteroidX[j], asteroidY[count], AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+                    System.out.println("asteroidX[j]: "+asteroidX[j]);
+                    System.out.println("asteroidY[count]: "+asteroidY[count]);
+                    System.out.println("asteroidArray[count].getTexture().getWidth()/5: "+asteroidArray[count].getTexture().getWidth()/5);
+
+                    circleArray[count] = new Circle(asteroidX[j], asteroidY[count], asteroidArray[count].getTexture().getWidth()/5);
+                    count++;
+                }
+            }
+        }
+    }
+
