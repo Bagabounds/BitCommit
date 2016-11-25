@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import org.hackathon.bitcommit.FileManager.FileManager;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
 import org.hackathon.bitcommit.helpers.InputHandler;
 import org.hackathon.bitcommit.scrollable.ScrollHandler;
 
+import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -24,6 +26,7 @@ public class PlayState extends State {
     private final Spaceship opponent;
     private ScrollHandler scroller;
     private Hud hud;
+    private FileManager fileManager;
 
     public PlayState(GameStateManager gsm) throws SocketException {
         super(gsm);
@@ -38,6 +41,7 @@ public class PlayState extends State {
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
         Gdx.input.setInputProcessor(new InputHandler(spaceship));
         hud = new Hud(Game.spriteBatch);
+        fileManager = new FileManager();
     }
 
     @Override
@@ -63,38 +67,47 @@ public class PlayState extends State {
 
         if (collides(scroller.getCircle1())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle2())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle3())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle4())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle5())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle6())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle7())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle8())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
         if (collides(scroller.getCircle9())) {
             gsm.set(new GameOverState(gsm));
+            save();
             dispose();
         }
     }
@@ -152,4 +165,27 @@ public class PlayState extends State {
     public boolean collides(Circle circle) {
         return spaceship.getCircle().overlaps(circle);
     }
+
+
+    public void load() {
+        fileManager.readFile("core/assets/scores.txt");
+        //System.out.println("Your score: " +  hud.score);
+    }
+
+    public void save() {
+
+        if (hud.score > Integer.parseInt(fileManager.readFile("core/assets/scores.txt"))) {
+            try {
+                fileManager.writeFile(Integer.toString(hud.score), "core/assets/scores.txt");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //System.out.println("NEW HIGH SCORE: " + hud.score);
+        } else {
+            load();
+        }
+    }
 }
+
+

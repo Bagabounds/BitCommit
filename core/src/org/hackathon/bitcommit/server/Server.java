@@ -51,7 +51,7 @@ public class Server implements Runnable {
             try {
                 socket.receive(receivePacket);
                 String data = new String(receivePacket.getData());
-                System.out.println("John said this : " + data);
+                //System.out.println("John said this : " + data);
 
                 movePlayer(data, receivePacket);
             } catch (IOException e) {
@@ -61,14 +61,14 @@ public class Server implements Runnable {
             }
 
             if (map.containsValue(String.valueOf(receivePacket.getAddress()))) {
-                System.out.println("Cliente existente");
+                //System.out.println("Cliente existente");
                 System.out.println(clientList.size());
 
                 for (int i = 0; i < clientList.size(); i++) {
                     if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
                         continue;
                     } else {
-                        System.out.println(clientList.get(i).getAddress() + "receive adress " + receivePacket.getAddress());
+                        //System.out.println(clientList.get(i).getAddress() + "receive adress " + receivePacket.getAddress());
                         clientList.get(i).sendPacket(receivePacket);
                         continue;
                     }
@@ -87,7 +87,7 @@ public class Server implements Runnable {
                 clientThread.start();
                 clientList.add(client);
                 map.put(client, ip);
-                System.out.println(map.size());
+                //System.out.println(map.size());
 
                 byte[] sendBuffer = new byte[2048];
                 DatagramPacket sendPacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
@@ -107,7 +107,7 @@ public class Server implements Runnable {
     }
 
     private void movePlayer(String data, DatagramPacket datagramPacket) throws IOException, ClassNotFoundException {
-        System.out.println("before sending the message");
+        //System.out.println("before sending the message");
         if (map.containsValue(String.valueOf(datagramPacket.getAddress()))) {
             System.out.println("sending message");
         }
@@ -118,14 +118,11 @@ public class Server implements Runnable {
         @Override
         public void run() {
             String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 9) + 1));
-            System.out.println("asteroide na posiçao " + asteroidPlace.toString());
+            //System.out.println("asteroide na posiçao " + asteroidPlace.toString());
             DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.length());
             for (int i = 0; i < clientList.size(); i++) {
-
                 clientList.get(i).sendPacket(asteroidPacked);
             }
-
-
         }
     }
 }

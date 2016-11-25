@@ -40,14 +40,13 @@ public class Spaceship {
         socket = new DatagramSocket();
         sendBuffer = new byte[2048];
         opponent = playState.getOpponent();
-        System.out.println("Spaceship get opponent: "+opponent);
-        System.out.println(Thread.currentThread().getName() + " spacesho");
+        //System.out.println("Spaceship get opponent: "+opponent);
+        //System.out.println(Thread.currentThread().getName() + " spacesho");
         receiveData = new ReceiveData(socket,opponent);
 
         thread = new Thread(receiveData);
         thread.start();
         this.playState = playState;
-        //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
         circle = new Circle(x, y, 10);
 
     }
@@ -66,7 +65,7 @@ public class Spaceship {
                 velocity.x -= 60;
             }
 
-            Gdx.app.log("velocity.x = ", velocity.x + "");
+            //Gdx.app.log("velocity.x = ", velocity.x + "");
 
         } else if (input == 22) {
             // RIGHT
@@ -77,7 +76,7 @@ public class Spaceship {
                 velocity.x += 60;
             }
 
-            Gdx.app.log("velocity.x = ", velocity.x + "");
+            //Gdx.app.log("velocity.x = ", velocity.x + "");
 
             // todo: implementar logica UP para quando recebe power up
 

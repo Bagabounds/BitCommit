@@ -19,18 +19,12 @@ public class Game extends ApplicationAdapter {
 	public static SpriteBatch spriteBatch;
 	private GameStateManager gsm;
 
-
-	private Texture img;
-
 	
 	@Override
 	public void create () {
 		spriteBatch = new SpriteBatch();
-		//img = new Texture("core/assets/badlogic.jpg");
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
-
-
 	}
 
 	// render() method is on loop
@@ -45,11 +39,6 @@ public class Game extends ApplicationAdapter {
 			e.printStackTrace();
 		}
 		gsm.render(spriteBatch);
-
-
-/*		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();*/
 	}
 	
 	@Override

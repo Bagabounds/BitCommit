@@ -29,10 +29,10 @@ public class GameClient implements Runnable {
     }
 
     public synchronized void sendPacket(DatagramPacket datagramPacket) {
-        System.out.println("enviei");
+        //System.out.println("enviei");
         try {
             socket.send(new DatagramPacket(datagramPacket.getData(), datagramPacket.getLength(), this.address, this.port));
-            System.out.println(address + " " + port);
+            //System.out.println(address + " " + port);
         } catch (IOException e) {
             e.printStackTrace();
         }

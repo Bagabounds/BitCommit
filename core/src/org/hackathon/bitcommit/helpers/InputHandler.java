@@ -20,14 +20,10 @@ public class InputHandler implements InputProcessor{
 
         switch (keycode){
             case Input.Keys.LEFT:
-
                     spaceship.onKeyPressed(Input.Keys.LEFT);
-
                 break;
             case Input.Keys.RIGHT:
-
                     spaceship.onKeyPressed(Input.Keys.RIGHT);
-
                 break;
         }
         return true;
