@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by codecadet on 24/11/16.
@@ -15,6 +13,7 @@ public class Server implements Runnable {
     static Map<GameClient, String> map;
     private LinkedList<GameClient> clientList;
     boolean gameOnline;
+
 
     public Server() {
         map = new HashMap();
@@ -29,6 +28,9 @@ public class Server implements Runnable {
         DatagramSocket socket = null;
         int portNumber = 5000;
         clientList = new LinkedList();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new asteroidGenerator(), 0, 4000);
+
 
         try {
             socket = new DatagramSocket(portNumber);
@@ -68,7 +70,7 @@ public class Server implements Runnable {
                     } else {
                         System.out.println(clientList.get(i).getAddress() + "receive adress " + receivePacket.getAddress());
                         clientList.get(i).sendPacket(receivePacket);
-                         continue;
+                        continue;
                     }
                 }
             } else {
@@ -97,7 +99,7 @@ public class Server implements Runnable {
                     } else {
                         System.out.println(clientList.get(i).getAddress() + "receive new address " + receivePacket.getAddress());
                         clientList.get(i).sendPacket(receivePacket);
-                         continue;
+                        continue;
                     }
                 }
             }
@@ -108,6 +110,22 @@ public class Server implements Runnable {
         System.out.println("before sending the message");
         if (map.containsValue(String.valueOf(datagramPacket.getAddress()))) {
             System.out.println("sending message");
+        }
+    }
+
+    public class asteroidGenerator extends TimerTask {
+
+        @Override
+        public void run() {
+            String asteroidPlace = String.valueOf((int) (Math.floor(Math.random() * 9) + 1));
+            System.out.println("asteroide na posiçao " + asteroidPlace.toString());
+            DatagramPacket asteroidPacked = new DatagramPacket(asteroidPlace.getBytes(), asteroidPlace.length());
+            for (int i = 0; i < clientList.size(); i++) {
+
+                clientList.get(i).sendPacket(asteroidPacked);
+            }
+
+
         }
     }
 }

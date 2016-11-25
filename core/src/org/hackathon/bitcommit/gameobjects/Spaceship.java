@@ -27,6 +27,7 @@ public class Spaceship {
     private Spaceship opponent;
 
     private Texture texture;
+    private Texture opponentTexture = new Texture("core/assets/ship2.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
         position = new Vector3(x, y, 0);
@@ -42,6 +43,10 @@ public class Spaceship {
         thread = new Thread(receiveData);
         thread.start();
         this.playState = playState;
+    }
+
+    public Texture getOpponentTexture() {
+        return opponentTexture;
     }
 
     public void onKeyPressed(int input) {
@@ -104,11 +109,11 @@ public class Spaceship {
 
     public void update(float delta) {
 
-/*        if (velocity.x > 0) {
+        if (velocity.x > 0) {
             velocity.x -= 2;
         } else if (velocity.x < 0) {
             velocity.x += 2;
-        }*/
+        }
 
         position.add(velocity.cpy().scl(delta));
 
@@ -134,7 +139,7 @@ public class Spaceship {
         this.position = position;
     }
     public void sendPosition() throws UnknownHostException {
-        System.out.println("Position " + (position).toString() );
+        //System.out.println("Position " + (position).toString() );
         sendBuffer = ("1" + (position).toString()).getBytes();
         sendPacket = new DatagramPacket(sendBuffer,sendBuffer.length, InetAddress.getByName(hostName),portNumber);
         try {
