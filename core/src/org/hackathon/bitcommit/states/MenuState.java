@@ -17,15 +17,19 @@ public class MenuState extends State {
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("core/assets/placeholderfirstscreen_1024.jpg");
+        background = new Texture("core/assets/placeholderforbackground1ststate.png");
         playButton = new Texture("core/assets/play.png");
     }
 
     @Override
     public void handleInput() throws SocketException {
         if(Gdx.input.justTouched()){
+<<<<<<< HEAD
             System.out.println("handleionput");
             gsm.set(new PlayState(gsm));
+=======
+            gsm.set(new TestScrollState(gsm));
+>>>>>>> 523d298f77412cbaf150526598f5e88e8c181cdb
             dispose();
         }
     }

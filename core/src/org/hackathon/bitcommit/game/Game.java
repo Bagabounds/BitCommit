@@ -25,7 +25,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
 		spriteBatch = new SpriteBatch();
-		img = new Texture("core/assets/badlogic.jpg");
+		//img = new Texture("core/assets/badlogic.jpg");
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
 		hud = new Hud(spriteBatch);
@@ -55,6 +55,5 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		spriteBatch.dispose();
-		img.dispose();
 	}
 }
