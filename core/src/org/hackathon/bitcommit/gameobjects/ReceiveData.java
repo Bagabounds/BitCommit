@@ -62,6 +62,11 @@ public class ReceiveData implements Runnable{
                             opponent.setTexture(new Texture("core/assets/ship2.png"));
                         }
                         opponent.setPosition(opponentPosition);
+                        
+                        if(opponent.isGameMode())
+                            opponent.setGameMode(false);
+                        else
+                            opponent.setGameMode(true);
                     }
                 }
 
