@@ -43,6 +43,10 @@ public abstract class Scrollable {
         isScrolledDown = false;
     }
 
+    public void dispose(){
+        texture.dispose();
+    }
+
     public boolean isScrolledDown() {
         return isScrolledDown;
     }

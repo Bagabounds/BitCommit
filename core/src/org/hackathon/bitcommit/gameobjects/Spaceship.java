@@ -2,6 +2,7 @@ package org.hackathon.bitcommit.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
@@ -16,12 +17,15 @@ public class Spaceship {
     private Texture texture;
 
     private Rectangle rectangle;
+    private Circle circle;
 
     public Spaceship(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
         texture = new Texture("core/assets/resizewithouterglow.png");
-        rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        circle = new Circle(x, y, 28);
+
     }
 
     public void onKeyPressed(int input) {
@@ -34,8 +38,6 @@ public class Spaceship {
                 velocity.x -= 60;
             }
 
-            Gdx.app.log("velocity.x = ", velocity.x + "");
-
         } else if (input == 22) {
             // RIGHT
 
@@ -44,8 +46,6 @@ public class Spaceship {
             } else {
                 velocity.x += 60;
             }
-
-            Gdx.app.log("velocity.x = ", velocity.x + "");
 
             // todo: implementar logica UP para quando recebe power up
 
@@ -84,11 +84,11 @@ public class Spaceship {
 
     public void update(float delta) {
 
-/*        if (velocity.x > 0) {
+        if (velocity.x > 0) {
             velocity.x -= 2;
         } else if (velocity.x < 0) {
             velocity.x += 2;
-        }*/
+        }
 
         position.add(velocity.cpy().scl(delta));
 
@@ -100,7 +100,8 @@ public class Spaceship {
             velocity.x = 0;
         }
 
-        rectangle.setPosition(position.x, position.y);
+        //rectangle.setPosition(position.x, position.y);
+        circle.setPosition(position.x, position.y);
 
     }
 
@@ -114,5 +115,13 @@ public class Spaceship {
 
     public Rectangle getRectangle() {
         return rectangle;
+    }
+
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public void dispose() {
+        texture.dispose();
     }
 }
