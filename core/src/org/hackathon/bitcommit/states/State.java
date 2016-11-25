@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
+import java.net.SocketException;
+
 /**
  * Created by codecadet on 24/11/16.
  */
@@ -18,9 +20,9 @@ public abstract class State {
         mouse = new Vector3();
     }
 
-    public abstract void handleInput();
+    public abstract void handleInput() throws SocketException;
 
-    public abstract void update(float delta);
+    public abstract void update(float delta) throws SocketException;
 
     public abstract void render(SpriteBatch spriteBatch);
 

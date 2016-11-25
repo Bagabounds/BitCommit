@@ -49,6 +49,7 @@ public class Server implements Runnable {
             try {
                 socket.receive(receivePacket);
                 String data = new String(receivePacket.getData());
+                System.out.println("John said this : " + data);
 
                 movePlayer(data, receivePacket);
             } catch (IOException e) {
@@ -62,9 +63,14 @@ public class Server implements Runnable {
                 System.out.println(clientList.size());
 
                 for (int i = 0; i < clientList.size(); i++) {
-                    clientList.get(i).sendPacket(receivePacket);
-                    continue;
-                }
+                  //  if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
+                    //    continue;
+                    //} else {
+                        System.out.println(clientList.get(i).getAddress() + "receive adress " + receivePacket.getAddress());
+                        clientList.get(i).sendPacket(receivePacket);
+                        // continue;
+                    }
+              //  }
             } else {
 
                 String ip = String.valueOf(receivePacket.getAddress());
@@ -86,17 +92,21 @@ public class Server implements Runnable {
 
 
                 for (int i = 0; i < clientList.size(); i++) {
-                    clientList.get(i).sendPacket(sendPacket);
-                }
-
-
+                    //if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
+                      //  continue;
+                    //} else {
+                        System.out.println(clientList.get(i).getAddress() + "receive new address " + receivePacket.getAddress());
+                        clientList.get(i).sendPacket(receivePacket);
+                        // continue;
+                    }
+                //}
             }
         }
     }
 
-    private void movePlayer (String data ,DatagramPacket datagramPacket) throws IOException, ClassNotFoundException {
+    private void movePlayer(String data, DatagramPacket datagramPacket) throws IOException, ClassNotFoundException {
         System.out.println("before sending the message");
-        if(map.containsValue(String.valueOf(datagramPacket.getAddress()))){
+        if (map.containsValue(String.valueOf(datagramPacket.getAddress()))) {
             System.out.println("sending message");
         }
     }

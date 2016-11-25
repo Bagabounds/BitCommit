@@ -2,6 +2,7 @@ package org.hackathon.bitcommit.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.net.SocketException;
 import java.util.Stack;
 
 /**
@@ -28,7 +29,7 @@ public class GameStateManager {
         states.push(state);
     }
 
-    public void update(float delta){
+    public void update(float delta) throws SocketException {
         states.peek().update(delta);
     }
 

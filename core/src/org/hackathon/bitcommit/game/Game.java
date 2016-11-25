@@ -9,6 +9,8 @@ import org.hackathon.bitcommit.states.GameStateManager;
 import org.hackathon.bitcommit.states.Hud;
 import org.hackathon.bitcommit.states.MenuState;
 
+import java.net.SocketException;
+
 public class Game extends ApplicationAdapter {
 
 	public static final int WIDTH = 680;
@@ -36,7 +38,11 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		gsm.update(Gdx.graphics.getDeltaTime());
+		try {
+			gsm.update(Gdx.graphics.getDeltaTime());
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
 		gsm.render(spriteBatch);
 		spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
 		hud.stage.draw();
