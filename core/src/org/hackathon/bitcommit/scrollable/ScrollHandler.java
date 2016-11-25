@@ -47,13 +47,13 @@ public class ScrollHandler {
         int[] asteroidX = getRandoms();
 
         asteroid1 = new Asteroid(asteroidX[0], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid2 = new Asteroid(asteroidX[1], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        asteroid2 = new Asteroid(asteroidX[1], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid3 = new Asteroid(asteroidX[2], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
         asteroid4 = new Asteroid(asteroidX[3], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
+        asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid7 = new Asteroid(asteroidX[6], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid8 = new Asteroid(asteroidX[7], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        asteroid8 = new Asteroid(asteroidX[7], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/asteroid2_.png");
         asteroid9 = new Asteroid(asteroidX[8], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
 
         System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);

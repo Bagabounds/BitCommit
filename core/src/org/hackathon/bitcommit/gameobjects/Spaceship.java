@@ -30,7 +30,7 @@ public class Spaceship {
     private Circle circle;
 
     private Texture texture;
-    private Texture opponentTexture = new Texture("core/assets/ship2.png");
+    private Texture opponentTexture = new Texture("core/assets/resizewithouterglow2.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 

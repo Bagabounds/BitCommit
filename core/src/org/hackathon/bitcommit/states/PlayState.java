@@ -23,6 +23,7 @@ public class PlayState extends State {
     private Spaceship spaceship;
     private final Spaceship opponent;
     private ScrollHandler scroller;
+    private Hud hud;
 
     public PlayState(GameStateManager gsm) throws SocketException {
         super(gsm);
@@ -36,6 +37,7 @@ public class PlayState extends State {
         scroller = new ScrollHandler();
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
         Gdx.input.setInputProcessor(new InputHandler(spaceship));
+        hud = new Hud(Game.spriteBatch);
     }
 
     @Override
@@ -49,6 +51,10 @@ public class PlayState extends State {
         spaceship.update(delta);
         scroller.update(delta);
         opponent.update(delta);
+        hud.update(delta);
+        hud.addScore(1);
+
+
         try {
             spaceship.sendPosition();
         } catch (UnknownHostException e) {
@@ -98,12 +104,15 @@ public class PlayState extends State {
 
         //spriteBatch.setProjectionMatrix(super.getCam().combined);
 
+
         spriteBatch.begin();
         //spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
         drawBackgroundImages(spriteBatch);
         spriteBatch.draw(spaceship.getTexture(), spaceship.getPosition().x, spaceship.getPosition().y);
         spriteBatch.draw(opponent.getOpponentTexture(), opponent.getPosition().x, opponent.getPosition().y);
+        spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         spriteBatch.end();
+        hud.stage.draw();
 
     }
 

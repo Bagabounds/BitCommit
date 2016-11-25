@@ -19,12 +19,13 @@ import org.hackathon.bitcommit.game.Game;
 
 public class Hud implements Disposable{
 
+    public static int score;
     //Scene2D.ui Stage and its own Viewport for HUD
     public Stage stage;
     private Viewport viewport;
 
      //time Tracking Variables
-    private Integer worldTimer;
+    private int worldTimer;
     private boolean isDead; // true when the one player dies;
 
     //score variables
@@ -38,8 +39,10 @@ public class Hud implements Disposable{
     //private Label worldLabel;
     private Label player1Label;
     private Label player2Label;
-    private Label scoreP1Label;
+    private static Label scoreP1Label;
     private Label scoreP2Label;
+    private float timeCount;
+    private boolean timeUp;
 
 
     public Hud(SpriteBatch sb){
@@ -62,12 +65,10 @@ public class Hud implements Disposable{
         //define our labels using the String, and a Label style consisting of a font and color
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        player1Label = new Label("SHIP", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        player2Label = new Label("Player 2", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //scoreP1Label = new Label(String.format("%04", scoreP1), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-//        scoreP2Label = new Label(String.format("%04", scoreP2), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        player1Label = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        player2Label = new Label("Opponent Score", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreP1Label = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+//
 
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
@@ -88,23 +89,23 @@ public class Hud implements Disposable{
 
     }
 
-//    public void update(float dt){
-//        timeCount += dt;
-//        if(timeCount >= 1){
-//            if (worldTimer > 0) {
-//                worldTimer--;
-//            } else {
-//                timeUp = true;
-//            }
-//            countdownLabel.setText(String.format("%03d", worldTimer));
-//            timeCount = 0;
-//        }
-//    }
-//
-//    public static void addScore(int value){
-//        score += value;
-//        scoreLabel.setText(String.format("%06d", score));
-//    }
+    public void update(float dt){
+       timeCount += dt;
+        if(timeCount >= 1){
+            if (worldTimer > 0) {
+               worldTimer--;
+           } else {
+               timeUp = true;
+           }
+            countdownLabel.setText(String.format("%03d", worldTimer));
+           timeCount = 0;
+        }
+   }
+
+    public static void addScore(int value){
+        score += value;
+        scoreP1Label.setText(String.format("%03d", score));
+    }
 
     @Override
     public void dispose() { stage.dispose(); }}
