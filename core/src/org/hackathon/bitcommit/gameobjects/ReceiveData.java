@@ -26,9 +26,12 @@ public class ReceiveData implements Runnable{
         receivePacket = new DatagramPacket(receiveBuffer,receiveBuffer.length);
         try {
             while(true){
+                System.out.println("Receive Data - ready to receive :");
                 socket.receive(receivePacket);
+                System.out.println("Receive Data - after receiving packet");
                 String input = new String(receivePacket.getData(),0,receivePacket.getLength());
 
+<<<<<<< HEAD
                 //System.out.println("Received "+input);
                 //System.out.println("opponent: " + opponent);
                 float x = Float.parseFloat(input.substring(input.indexOf("(")+1,input.indexOf(",")));
@@ -37,6 +40,25 @@ public class ReceiveData implements Runnable{
                 Vector3 opponentPosition = new Vector3(x,y,z);
                 //System.out.println(x + " " + y + " " + z);
                 opponent.setPosition(opponentPosition);
+=======
+
+                if (input.length() == 1){
+                    opponent.setAsteroidReference(Integer.parseInt(input));
+                    System.out.println("Received asteroid "+input);
+                    System.out.println("Set asteroid reference to "+input+" in opponent");
+                }
+
+                else {
+                    System.out.println("Received "+input);
+                    System.out.println("opponent: " + opponent);
+                    float x = Float.parseFloat(input.substring(input.indexOf("(")+1,input.indexOf(",")));
+                    float y = Float.parseFloat(input.substring(input.indexOf(",")+1,input.lastIndexOf(",")));
+                    float z = 0;
+                    Vector3 opponentPosition = new Vector3(x,y,z);
+                    System.out.println(x + " " + y + " " + z);
+                    opponent.setPosition(opponentPosition);
+                }
+>>>>>>> ba6713810bdee42511eead3651f4a2abe0c89d71
 
             }
 

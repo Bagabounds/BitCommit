@@ -3,7 +3,6 @@ package org.hackathon.bitcommit.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.states.PlayState;
@@ -28,6 +27,7 @@ public class Spaceship {
     private PlayState playState;
     private Spaceship opponent;
     private Circle circle;
+    private int asteroidReference;
 
     private Texture texture;
     private Texture opponentTexture = new Texture("core/assets/resizewithouterglow2.png");
@@ -164,5 +164,13 @@ public class Spaceship {
 
     public void dispose() {
         texture.dispose();
+    }
+
+    public void setAsteroidReference(int asteroidReference) {
+        this.asteroidReference = asteroidReference;
+    }
+
+    public int getAsteroidReference() {
+        return asteroidReference;
     }
 }
