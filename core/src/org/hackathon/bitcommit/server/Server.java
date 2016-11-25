@@ -29,7 +29,7 @@ public class Server implements Runnable {
         int portNumber = 5000;
         clientList = new LinkedList();
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new asteroidGenerator(), 0, 3000);
+        timer.scheduleAtFixedRate(new asteroidGenerator(), 0, 2000);
 
 
         try {

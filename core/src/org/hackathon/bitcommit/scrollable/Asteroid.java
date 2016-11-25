@@ -6,8 +6,8 @@ package org.hackathon.bitcommit.scrollable;
 public class Asteroid extends Scrollable{
 
 
-    public Asteroid(int x, int y, float scrollSpeed, String path) {
-        super(x, y, scrollSpeed, path);
+    public Asteroid(int x, int y, float scrollSpeed, String pathToTexture, String pathToEasterEgg) {
+        super(x, y, scrollSpeed, pathToTexture, pathToEasterEgg);
     }
 
 

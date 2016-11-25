@@ -1,5 +1,6 @@
 package org.hackathon.bitcommit.gameobjects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
 import java.io.IOException;
@@ -48,7 +49,25 @@ public class ReceiveData implements Runnable{
                     float z = 0;
                     Vector3 opponentPosition = new Vector3(x,y,z);
                     System.out.println(x + " " + y + " " + z);
-                    opponent.setPosition(opponentPosition);
+
+                    if(!opponent.isGameMode()) {
+                        if (opponent.getPosition().x > x) {
+                            //set right texture
+                            opponent.setTexture(new Texture("core/assets/ship2right.png"));
+                        } else if (opponent.getPosition().x < x) {
+                            //set left texture
+                            opponent.setTexture(new Texture("core/assets/ship2left.png"));
+                        } else if (opponent.getPosition().x == x) {
+                            //set still position
+                            opponent.setTexture(new Texture("core/assets/ship2.png"));
+                        }
+                        opponent.setPosition(opponentPosition);
+                        
+                        if(opponent.isGameMode())
+                            opponent.setGameMode(false);
+                        else
+                            opponent.setGameMode(true);
+                    }
                 }
 
             }

@@ -6,28 +6,53 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.gameobjects.Spaceship;
+import org.hackathon.bitcommit.scrollable.ScrollHandler;
 
 /**
  * Created by codecadet on 24/11/16.
  */
-public class InputHandler implements InputProcessor{
+public class InputHandler implements InputProcessor {
 
     private Spaceship spaceship;
+    private ScrollHandler scroller;
 
-    public InputHandler(Spaceship spaceship) {
+    public InputHandler(Spaceship spaceship, ScrollHandler scroller) {
         this.spaceship = spaceship;
+        this.scroller = scroller;
     }
 
     @Override
     public boolean keyDown(int keycode) {
 
-        switch (keycode){
+        switch (keycode) {
             case Input.Keys.LEFT:
-                    spaceship.onKeyPressed(Input.Keys.LEFT);
+                spaceship.onKeyPressed(Input.Keys.LEFT);
+                if(!spaceship.isGameMode())
                     spaceship.changeTexture(new Texture("core/assets/shipleft.png"));
                 Game.assetManager.get("core/assets/audio/sfx/turnsound_final_.wav" , Sound.class).play();
                 break;
             case Input.Keys.RIGHT:
+                spaceship.onKeyPressed(Input.Keys.RIGHT);
+                if(!spaceship.isGameMode())
+                    spaceship.changeTexture(new Texture("core/assets/shipright.png"));
+                break;
+            case Input.Keys.UP:
+                spaceship.onKeyPressed(Input.Keys.UP);
+                break;
+            case Input.Keys.DOWN:
+                spaceship.onKeyPressed(Input.Keys.DOWN);
+                break;
+            case Input.Keys.ENTER:
+                spaceship.changeSprites();
+                spaceship.changeOpponentForReal();
+                scroller.changeSprites();
+                if(spaceship.isGameMode())
+                    spaceship.setGameMode(false);
+                else
+                    spaceship.setGameMode(true);
+                break;
+            case Input.Keys.ESCAPE:
+                System.exit(0);
                     spaceship.onKeyPressed(Input.Keys.RIGHT);
                 spaceship.changeTexture(new Texture("core/assets/shipright.png"));
                 Game.assetManager.get("core/assets/audio/sfx/turnsound_final_.wav" , Sound.class).play();

@@ -12,15 +12,17 @@ public abstract class Scrollable {
 
 
     private Texture texture;
+    private Texture easterEggTexture;
     private Vector3 position;
     private Vector3 velocity;
     private boolean isScrolledDown;
 
-    public Scrollable(int x, int y, float scrollSpeed, String path) {
+    public Scrollable(int x, int y, float scrollSpeed, String pathToTexture, String pathToEasterEggTexture) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, scrollSpeed, 0);
         isScrolledDown = false;
-        texture = new Texture(path);
+        texture = new Texture(pathToTexture);
+        easterEggTexture = new Texture(pathToEasterEggTexture);
     }
 
     public void update(float delta) {
@@ -62,5 +64,16 @@ public abstract class Scrollable {
     public Texture getTexture(){
         return texture;
     }
+    
+    public Texture getEasterEggTexture() {
+        return easterEggTexture;
+    }
 
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public void setEasterEggTexture(Texture easterEggTexture) {
+        this.easterEggTexture = easterEggTexture;
+    }
 }

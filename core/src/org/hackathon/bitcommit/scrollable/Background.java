@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
  */
 public class Background extends Scrollable{
 
-    public Background(int x, int y, float scrollSpeed, String path) {
-        super(x, y, scrollSpeed, path);
+    public Background(int x, int y, float scrollSpeed, String pathToTexture, String pathToEasterEggTexture) {
+        super(x, y, scrollSpeed, pathToTexture, pathToEasterEggTexture);
     }
 }
