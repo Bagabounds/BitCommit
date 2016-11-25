@@ -1,5 +1,6 @@
 package org.hackathon.bitcommit.scrollable;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
 import org.hackathon.bitcommit.game.Game;
 
@@ -40,23 +41,24 @@ public class ScrollHandler {
 
     public ScrollHandler() {
 
-        bg1 = new Background(0, 0, BG_SCROLL_SPEED, "core/assets/backgroundslice3.jpg");
-        bg2 = new Background(0, (int) (bg1.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice2.jpg");
-        bg3 = new Background(0, (int) (bg2.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice1.jpg");
+        bg1 = new Background(0, 0, BG_SCROLL_SPEED, "core/assets/backgroundslice3.jpg", "core/assets/easterggbackground.png");
+        bg2 = new Background(0, (int) (bg1.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice2.jpg", "core/assets/easterggbackground.png");
+        bg3 = new Background(0, (int) (bg2.getPosition().y + Game.HEIGHT), BG_SCROLL_SPEED, "core/assets/backgroundslice1.jpg", "core/assets/easterggbackground.png");
 
         int[] asteroidX = getRandoms();
 
-        asteroid1 = new Asteroid(asteroidX[0], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid2 = new Asteroid(asteroidX[1], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid3 = new Asteroid(asteroidX[2], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid4 = new Asteroid(asteroidX[3], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid7 = new Asteroid(asteroidX[6], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid8 = new Asteroid(asteroidX[7], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
-        asteroid9 = new Asteroid(asteroidX[8], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png");
+        // todo: change pathToEasterEggTexture on the asteroids
+        asteroid1 = new Asteroid(asteroidX[0], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid2 = new Asteroid(asteroidX[1], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid3 = new Asteroid(asteroidX[2], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid4 = new Asteroid(asteroidX[3], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid5 = new Asteroid(asteroidX[4], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid6 = new Asteroid(asteroidX[5], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid7 = new Asteroid(asteroidX[6], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid8 = new Asteroid(asteroidX[7], Game.HEIGHT - 200, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
+        asteroid9 = new Asteroid(asteroidX[8], Game.HEIGHT + 100, AST_SCROLL_SPEED, "core/assets/muchasteroidresize.png", "core/assets/eastereggobstacles.png");
 
-        System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
+        //System.out.println("Raio da textura do asteroide = " + asteroid1.getTexture().getWidth()/5);
 
         circle1 = new Circle(asteroidX[0], Game.HEIGHT + 100, asteroid1.getTexture().getWidth()/5);
         circle2 = new Circle(asteroidX[1], Game.HEIGHT - 200, asteroid2.getTexture().getWidth()/5);
@@ -67,6 +69,61 @@ public class ScrollHandler {
         circle7 = new Circle(asteroidX[6], Game.HEIGHT + 100, asteroid7.getTexture().getWidth()/5);
         circle8 = new Circle(asteroidX[7], Game.HEIGHT - 200, asteroid8.getTexture().getWidth()/5);
         circle9 = new Circle(asteroidX[8], Game.HEIGHT + 100, asteroid9.getTexture().getWidth()/5);
+
+    }
+
+    public void changeSprites(){
+        Texture tempTexture = bg1.getTexture();
+        bg1.setTexture(bg1.getEasterEggTexture()); //texture = easterEggTexture;
+        bg1.setEasterEggTexture(tempTexture); //easterEggTexture = tempTexture;
+
+        tempTexture = bg2.getTexture();
+        bg2.setTexture(bg2.getEasterEggTexture()); //texture = easterEggTexture;
+        bg2.setEasterEggTexture(tempTexture); //easterEggTexture = tempTexture;
+
+        tempTexture = bg3.getTexture();
+        bg3.setTexture(bg3.getEasterEggTexture()); //texture = easterEggTexture;
+        bg3.setEasterEggTexture(tempTexture); //easterEggTexture = tempTexture;
+
+        tempTexture = asteroid1.getTexture();
+        asteroid1.setTexture(asteroid1.getEasterEggTexture());
+        asteroid1.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid2.getTexture();
+        asteroid2.setTexture(asteroid2.getEasterEggTexture());
+        asteroid2.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid3.getTexture();
+        asteroid3.setTexture(asteroid3.getEasterEggTexture());
+        asteroid3.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid4.getTexture();
+        asteroid4.setTexture(asteroid4.getEasterEggTexture());
+        asteroid4.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid5.getTexture();
+        asteroid5.setTexture(asteroid5.getEasterEggTexture());
+        asteroid5.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid6.getTexture();
+        asteroid6.setTexture(asteroid6.getEasterEggTexture());
+        asteroid6.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid7.getTexture();
+        asteroid7.setTexture(asteroid7.getEasterEggTexture());
+        asteroid7.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid8.getTexture();
+        asteroid8.setTexture(asteroid8.getEasterEggTexture());
+        asteroid8.setEasterEggTexture(tempTexture);
+
+        tempTexture = asteroid9.getTexture();
+        asteroid9.setTexture(asteroid9.getEasterEggTexture());
+        asteroid9.setEasterEggTexture(tempTexture);
+
+
+
+
 
     }
 

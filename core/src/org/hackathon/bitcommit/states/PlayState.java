@@ -35,7 +35,7 @@ public class PlayState extends State {
         spaceship = new Spaceship(20, 50, this);
         scroller = new ScrollHandler();
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
-        Gdx.input.setInputProcessor(new InputHandler(spaceship));
+        Gdx.input.setInputProcessor(new InputHandler(spaceship, scroller));
     }
 
     @Override
@@ -102,7 +102,7 @@ public class PlayState extends State {
         //spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
         drawBackgroundImages(spriteBatch);
         spriteBatch.draw(spaceship.getTexture(), spaceship.getPosition().x, spaceship.getPosition().y);
-        spriteBatch.draw(opponent.getOpponentTexture(), opponent.getPosition().x, opponent.getPosition().y);
+        spriteBatch.draw(opponent.getOpponentCurrentTexture(), opponent.getPosition().x, opponent.getPosition().y);
         spriteBatch.end();
 
     }
@@ -112,6 +112,7 @@ public class PlayState extends State {
 
         spaceship.dispose();
         scroller.dispose();
+        opponent.dispose();
 
     }
 

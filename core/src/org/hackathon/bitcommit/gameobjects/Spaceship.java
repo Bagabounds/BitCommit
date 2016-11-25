@@ -3,7 +3,6 @@ package org.hackathon.bitcommit.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.hackathon.bitcommit.game.Game;
 import org.hackathon.bitcommit.states.PlayState;
@@ -30,18 +29,26 @@ public class Spaceship {
     private Circle circle;
 
     private Texture texture;
-    private Texture opponentTexture = new Texture("core/assets/ship2.png");
+    private Texture opponentTexture1;
+    private Texture opponentCurrentTexture;
+    private Texture easterEggTexture;
+    private Texture easterEggTexture2;
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
         texture = new Texture("core/assets/resizewithouterglow.png");
+        opponentTexture1 = new Texture("core/assets/ship2.png");
+        easterEggTexture = new Texture("core/assets/eastereggspriteresize.png");
+        easterEggTexture2 = new Texture("core/assets/eastereggspriteresize.png");
+        opponentCurrentTexture = new Texture("core/assets/ship2.png");;
+
         socket = new DatagramSocket();
         sendBuffer = new byte[2048];
         opponent = playState.getOpponent();
-        System.out.println("Spaceship get opponent: "+opponent);
-        System.out.println(Thread.currentThread().getName() + " spacesho");
+        //System.out.println("Spaceship get opponent: "+opponent);
+        //System.out.println(Thread.currentThread().getName() + " spacesho");
         receiveData = new ReceiveData(socket,opponent);
 
         thread = new Thread(receiveData);
@@ -52,8 +59,8 @@ public class Spaceship {
 
     }
 
-    public Texture getOpponentTexture() {
-        return opponentTexture;
+    public Texture getOpponentCurrentTexture() {
+        return opponentCurrentTexture;
     }
 
     public void onKeyPressed(int input) {
@@ -63,7 +70,7 @@ public class Spaceship {
             if (velocity.x <= -240) {
                 return;
             } else {
-                velocity.x -= 60;
+                velocity.x -= 80;
             }
 
             Gdx.app.log("velocity.x = ", velocity.x + "");
@@ -74,45 +81,27 @@ public class Spaceship {
             if (velocity.x >= 240) {
                 return;
             } else {
-                velocity.x += 60;
+                velocity.x += 80;
             }
+
 
             Gdx.app.log("velocity.x = ", velocity.x + "");
 
             // todo: implementar logica UP para quando recebe power up
 
+        }else if(input == 19){
+
+           if(velocity.y >= 120)
+                return;
+            else
+                velocity.y += 45;
+        }else if(input == 20){
+            if (velocity.y <= -120)
+                return;
+            else
+                velocity.y -= 45;
         }
     }
-
-/*    public void onKeyPressed(int input) {
-        if (input == 21) {
-            // LEFT
-
-            if (velocity.x > 0) {
-                velocity.x = 0;
-            } else if (velocity.x <= -240) {
-                return;
-            } else {
-                velocity.x -= 60;
-            }
-
-            Gdx.app.log("velocity.x = ", velocity.x + "");
-
-        } else if (input == 22) {
-            // RIGHT
-
-            if (velocity.x < 0) {
-                velocity.x = 0;
-            } else if (velocity.x >= 240) {
-                return;
-            } else {
-                velocity.x += 60;
-            }
-
-            Gdx.app.log("velocity.x = ", velocity.x + "");
-
-        }
-    }*/
 
     public void update(float delta) {
 
@@ -124,18 +113,25 @@ public class Spaceship {
 
         position.add(velocity.cpy().scl(delta));
 
-        if (position.x >= Game.WIDTH - texture.getWidth()) {
-            position.set(Game.WIDTH - texture.getWidth(), 50, 0);
+        if (position.x >= Game.WIDTH - texture.getWidth() - 5) {
+            position.x = (Game.WIDTH - texture.getWidth() - 5);
             velocity.x = 0;
-        } else if (position.x <= 0) {
-            position.set(0, 50, 0);
+        } else if (position.x <= 0 + 5) {
+            position.x = 0 + 5;
             velocity.x = 0;
         }
+
+        if(position.y >= 500)
+            position.y = 500;
+        else if(position.y < 20)
+            position.y = 20;
 
         //rectangle.setPosition(position.x, position.y);
         circle.setPosition(position.x, position.y);
 
     }
+
+
 
     public Vector3 getPosition() {
         return position;
@@ -165,5 +161,27 @@ public class Spaceship {
 
     public void dispose() {
         texture.dispose();
+
     }
+
+    public void changeSprites() {
+        Texture tempTexture = texture;
+        texture = easterEggTexture;
+        easterEggTexture = tempTexture;
+    }
+
+    public void changeOpponentForReal(){
+        opponent.changeOpponentSprite();
+    }
+
+    public void changeOpponentSprite(){
+
+        Texture tempTexture = opponentCurrentTexture;
+        opponentCurrentTexture = easterEggTexture2;
+        easterEggTexture2 = tempTexture;
+
+    }
+
+
+
 }
