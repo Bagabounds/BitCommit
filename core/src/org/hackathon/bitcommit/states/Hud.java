@@ -19,20 +19,31 @@ import org.hackathon.bitcommit.game.Game;
 
 public class Hud implements Disposable{
 
+    public static int score;
     //Scene2D.ui Stage and its own Viewport for HUD
     public Stage stage;
     private Viewport viewport;
 
      //time Tracking Variables
-    private Integer worldTimer;
+    private int worldTimer;
     private boolean isDead; // true when the one player dies;
+
+    //score variables
+    private int scoreP1 = 1;
+    private int scoreP2 = 1;
 
     //Scene2D widgets
     private Label countdownLabel;
     private Label timeLabel;
-    private Label levelLabel;
-    private Label worldLabel;
+    //private Label levelLabel;
+    //private Label worldLabel;
     private Label player1Label;
+    private Label player2Label;
+    private static Label scoreP1Label;
+    private Label scoreP2Label;
+    private float timeCount;
+    private boolean timeUp;
+
 
     public Hud(SpriteBatch sb){
         //define our tracking variables
@@ -54,41 +65,47 @@ public class Hud implements Disposable{
         //define our labels using the String, and a Label style consisting of a font and color
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        player1Label = new Label("SHIP", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        player1Label = new Label("Score", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        player2Label = new Label("Opponent Score", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreP1Label = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+//
+
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
         table.add(player1Label).expandX().padTop(10);
-        table.add(worldLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
+        table.add(player2Label).expandX().padTop(10);
+        //table.add(worldLabel).expandX().padTop(10);
+
+
         //add a second row to our table
         table.row();
-        table.add(levelLabel).expandX();
+        table.add(scoreP1Label).expandX();
         table.add(countdownLabel).expandX();
+        table.add(scoreP2Label).expandX();
 
         //add our table to the stage
         stage.addActor(table);
 
     }
 
-//    public void update(float dt){
-//        timeCount += dt;
-//        if(timeCount >= 1){
-//            if (worldTimer > 0) {
-//                worldTimer--;
-//            } else {
-//                timeUp = true;
-//            }
-//            countdownLabel.setText(String.format("%03d", worldTimer));
-//            timeCount = 0;
-//        }
-//    }
-//
-//    public static void addScore(int value){
-//        score += value;
-//        scoreLabel.setText(String.format("%06d", score));
-//    }
+    public void update(float dt){
+       timeCount += dt;
+        if(timeCount >= 1){
+            if (worldTimer > 0) {
+               worldTimer--;
+           } else {
+               timeUp = true;
+           }
+            countdownLabel.setText(String.format("%03d", worldTimer));
+           timeCount = 0;
+        }
+   }
+
+    public static void addScore(int value){
+        score += value;
+        scoreP1Label.setText(String.format("%03d", score));
+    }
 
     @Override
     public void dispose() { stage.dispose(); }}

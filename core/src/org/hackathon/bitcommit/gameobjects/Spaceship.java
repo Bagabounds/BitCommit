@@ -30,7 +30,7 @@ public class Spaceship {
     private int asteroidReference;
 
     private Texture texture;
-    private Texture opponentTexture = new Texture("core/assets/ship2.png");
+    private Texture opponentTexture = new Texture("core/assets/resizewithouterglow2.png");
 
     public Spaceship(int x, int y, PlayState playState) throws SocketException {
 
@@ -48,7 +48,7 @@ public class Spaceship {
         thread.start();
         this.playState = playState;
         //rectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
-        circle = new Circle(x, y, 28);
+        circle = new Circle(x, y, 10);
 
     }
 

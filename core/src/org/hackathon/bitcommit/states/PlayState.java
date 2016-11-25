@@ -16,26 +16,28 @@ import java.net.UnknownHostException;
 /**
  * Created by codecadet on 24/11/16.
  */
-public class PlayState extends State{
+public class PlayState extends State {
 
     private Texture background;
     private Viewport viewport;
     private Spaceship spaceship;
     private final Spaceship opponent;
     private ScrollHandler scroller;
+    private Hud hud;
 
     public PlayState(GameStateManager gsm) throws SocketException {
         super(gsm);
         //background = new Texture("core/assets/background_1024.png");
-        opponent = new Spaceship(40,150, this);
-        spaceship = new Spaceship(20,50,this);
+        opponent = new Spaceship(40, 150, this);
+        spaceship = new Spaceship(20, 50, this);
         System.out.println("PS: " + opponent);
         System.out.println(Thread.currentThread().getName());
         //background = new Texture("core/assets/background_1024.png");
-        spaceship = new Spaceship(20,50,this);
+        spaceship = new Spaceship(20, 50, this);
         scroller = new ScrollHandler();
         //super.getCam().setToOrtho(false, Game.WIDTH / 2, Game.HEIGHT / 2);
         Gdx.input.setInputProcessor(new InputHandler(spaceship));
+        hud = new Hud(Game.spriteBatch);
     }
 
     @Override
@@ -49,15 +51,51 @@ public class PlayState extends State{
         spaceship.update(delta);
         scroller.update(delta);
         opponent.update(delta);
+        hud.update(delta);
+        hud.addScore(1);
+
+
         try {
             spaceship.sendPosition();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        if(collides(scroller.getCircle1())) {
+
+        if (collides(scroller.getCircle1())) {
             gsm.set(new GameOverState(gsm));
             dispose();
-            System.out.println(collides(scroller.getCircle1()));
+        }
+        if (collides(scroller.getCircle2())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle3())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle4())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle5())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle6())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle7())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle8())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
+        }
+        if (collides(scroller.getCircle9())) {
+            gsm.set(new GameOverState(gsm));
+            dispose();
         }
     }
 
@@ -66,12 +104,15 @@ public class PlayState extends State{
 
         //spriteBatch.setProjectionMatrix(super.getCam().combined);
 
+
         spriteBatch.begin();
         //spriteBatch.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
         drawBackgroundImages(spriteBatch);
         spriteBatch.draw(spaceship.getTexture(), spaceship.getPosition().x, spaceship.getPosition().y);
         spriteBatch.draw(opponent.getOpponentTexture(), opponent.getPosition().x, opponent.getPosition().y);
+        spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         spriteBatch.end();
+        hud.stage.draw();
 
     }
 
@@ -108,7 +149,7 @@ public class PlayState extends State{
         spriteBatch.draw(scroller.getAsteroid9().getTexture(), scroller.getAsteroid9().getPosition().x, scroller.getAsteroid9().getPosition().y, scroller.getAsteroid9().getTexture().getWidth() / 4, scroller.getAsteroid9().getTexture().getHeight() / 4);
     }
 
-    public boolean collides(Circle circle){
+    public boolean collides(Circle circle) {
         return spaceship.getCircle().overlaps(circle);
     }
 }
