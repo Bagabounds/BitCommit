@@ -9,6 +9,7 @@ import org.hackathon.bitcommit.gameobjects.Spaceship;
 import org.hackathon.bitcommit.helpers.InputHandler;
 
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 /**
  * Created by codecadet on 24/11/16.
@@ -41,6 +42,11 @@ public class PlayState extends State{
         handleInput();
         spaceship.update(delta);
         opponent.update(delta);
+        try {
+            spaceship.sendPosition();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

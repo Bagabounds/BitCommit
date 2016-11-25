@@ -31,9 +31,11 @@ public class ReceiveData implements Runnable{
                 System.out.println("Received "+input);
 
                 System.out.println(opponent);
-                int opponentInput = Integer.parseInt(input.substring(input.lastIndexOf(")")+1));
-                Vector3 opponentPosition = new Vector3();
-                opponent.onKeyPressed(opponentInput);
+                float x = Float.parseFloat(input.substring(input.indexOf("(")+1,input.indexOf(",")));
+                float y = Float.parseFloat(input.substring(input.indexOf(",")+1,input.lastIndexOf(",")));
+                float z = 0;
+                Vector3 opponentPosition = new Vector3(x,y,z);
+                System.out.println(x + " " + y + " " + z);
                 opponent.setPosition(opponentPosition);
 
             }

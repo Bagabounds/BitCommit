@@ -72,14 +72,7 @@ public class Spaceship {
             // todo: implementar logica UP para quando recebe power up
 
         }
-        System.out.println("Position " + (position).toString() + "Input " + Integer.toString(input));
-        sendBuffer = ("1" + (position).toString() + Integer.toString(input)).getBytes();
-        sendPacket = new DatagramPacket(sendBuffer,sendBuffer.length, InetAddress.getByName(hostName),portNumber);
-        try {
-            socket.send(sendPacket);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -107,5 +100,15 @@ public class Spaceship {
 
     public void setPosition(Vector3 position) {
         this.position = position;
+    }
+    public void sendPosition() throws UnknownHostException {
+        System.out.println("Position " + (position).toString() );
+        sendBuffer = ("1" + (position).toString()).getBytes();
+        sendPacket = new DatagramPacket(sendBuffer,sendBuffer.length, InetAddress.getByName(hostName),portNumber);
+        try {
+            socket.send(sendPacket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

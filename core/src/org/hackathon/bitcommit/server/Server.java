@@ -63,14 +63,14 @@ public class Server implements Runnable {
                 System.out.println(clientList.size());
 
                 for (int i = 0; i < clientList.size(); i++) {
-                  //  if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
-                    //    continue;
-                    //} else {
+                    if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
+                        continue;
+                    } else {
                         System.out.println(clientList.get(i).getAddress() + "receive adress " + receivePacket.getAddress());
                         clientList.get(i).sendPacket(receivePacket);
-                        // continue;
+                         continue;
                     }
-              //  }
+                }
             } else {
 
                 String ip = String.valueOf(receivePacket.getAddress());
@@ -92,14 +92,14 @@ public class Server implements Runnable {
 
 
                 for (int i = 0; i < clientList.size(); i++) {
-                    //if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
-                      //  continue;
-                    //} else {
+                    if (clientList.get(i).getAddress().equals(receivePacket.getAddress())) {
+                        continue;
+                    } else {
                         System.out.println(clientList.get(i).getAddress() + "receive new address " + receivePacket.getAddress());
                         clientList.get(i).sendPacket(receivePacket);
-                        // continue;
+                         continue;
                     }
-                //}
+                }
             }
         }
     }
